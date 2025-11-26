@@ -1,0 +1,30 @@
+<div class="auth-wrapper">
+      <div class="glass-card">
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Sign in to continue your journey</p>
+
+        <form [formGroup]="form" (ngSubmit)="login()">
+          <input type="email" formControlName="email" placeholder="Email">
+          <div class="password-wrapper">
+            <input [type]="showPass ? 'text' : 'password'" formControlName="password" placeholder="Password">
+            <button type="button" (click)="showPass = !showPass">
+              <mat-icon>{{showPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </div>
+
+          <div class="options">
+            <label>
+              <input type="checkbox" [(ngModel)]="remember" [ngModelOptions]="{standalone:true}">
+              <span>Remember me</span>
+            </label>
+            <a routerLink="/forgot">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">Sign In</button>
+
+          <p class="signup-link">
+            New to LUXE? <a routerLink="/signup">Create account</a>
+          </p>
+        </form>
+      </div>
+    </div>
