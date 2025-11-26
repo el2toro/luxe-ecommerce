@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+    <main class="home">
+
+      <!-- Hero -->
+      <section class="hero">
+        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/c974c28e95-3cfda063c5211c2cb9be.png?w=800&q=80" alt="Elegance">
+        <div class="hero-content">
+          <h2>Ehereal</h2>
+          <h2>Elegance</h2>
+          <button class="cta">Explore Collection →</button>
+        </div>
+      </section>
+
+      <!-- For You -->
+      <section class="section">
+        <h3>For You</h3>
+        <div class="products-grid">
+          <div class="product-card" *ngFor="let p of forYou">
+            <img [src]="p.img" [alt]="'img'">
+            <button class="view-3d">View in 3D</button>
+            <button class="wishlist"><mat-icon>favorite_border</mat-icon></button>
+            <div class="sale" *ngIf="p.sale">20% OFF</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Stylist -->
+      <section class="ai-stylist">
+        <div class="card">
+          <h4>AI Personal Stylist</h4>
+          <p>Get personalized recommendations</p>
+          <button>→</button>
+        </div>
+      </section>
+
+      <!-- Featured Brands -->
+      <section class="section">
+        <h3>Featured Brands</h3>
+        <div class="brands">
+          <div class="brand" *ngFor="let b of brands">{{b}}</div>
+        </div>
+      </section>
+
+      <!-- Membership -->
+      <section class="membership">
+        <h3>Join the Elite</h3>
+        <p>Exclusive access to limited collections and early releases</p>
+        <button class="gradient-btn">Become a Member</button>
+      </section>
+
+      <!-- Categories -->
+      <section class="section">
+        <h3>Shop by Category</h3>
+        <div class="categories-grid">
+          <div class="cat-card" *ngFor="let c of categories">
+            <img [src]="c.img" [alt]="c.name">
+            <div class="overlay">
+              <h4>{{c.name}}</h4>
+              <p>{{c.items}} items</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <app-bottom-nav></app-bottom-nav>

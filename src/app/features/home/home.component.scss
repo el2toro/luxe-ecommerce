@@ -1,0 +1,42 @@
+
+    .home { padding-top: 140px; padding-bottom: 100px; }
+    .hero { position: relative; height: 70vh; overflow:hidden; }
+    .hero img { width:100%; height:100%; object-fit:cover; }
+    .hero-content { position:absolute; bottom:40px; left:20px; }
+    .hero h2 { font-family: 'Playfair Display', serif; font-size:48px; margin:0 0 16px; }
+    .cta { background:rgba(255,255,255,0.2); backdrop-filter:blur(10px);
+             border:none; padding:12px 24px; border-radius:50px; color:white; }
+
+    .section { padding:0 20px; margin:40px 0; }
+    h3 { font-family:'Playfair Display', serif; font-size:28px; margin-bottom:20px; }
+
+    .products-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .product-card {
+      position:relative; border-radius:24px; overflow:hidden;
+      background:red; backdrop-filter:blur(10px);
+    }
+    .product-card img { width:100%; height:280px; object-fit:cover; }
+    .view-3d, .wishlist, .sale { position:absolute; }
+    .view-3d { bottom:12px; left:12px; background:rgba(0,0,0,0.6); color:white; border:none; padding:8px 16px; border-radius:50px; font-size:12px; }
+    .wishlist { top:12px; right:12px; background:none; border:none; color:white; }
+    .sale { top:12px; left:12px; background:#ff3b30; padding:4px 12px; border-radius:12px; font-size:12px; }
+
+    .ai-stylist, .membership { padding:0 20px; }
+    .card, .membership {
+      background:rgba(30, 30, 30, 0.65); backdrop-filter:blur(20px);
+      border-radius:24px; padding:24px; text-align:center;
+    }
+    .gradient-btn {
+      background:linear-gradient(135deg, #9d4edd, #c77dff); border:none; color:white;
+      padding:16px 32px; border-radius:50px; font-size:16px; margin-top:16px;
+    }
+
+    .brands { display:flex; overflow-x:auto; gap:12px; padding-bottom:8px; }
+    .brand { min-width:120px; background:rgba(50,50,50,0.8); padding:20px; text-align:center;
+             border-radius:24px; backdrop-filter:blur(10px); }
+
+    .categories-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .cat-card { position:relative; border-radius:24px; overflow:hidden; }
+    .cat-card img { width:100%; height:200px; object-fit:cover; }
+    .overlay { position:absolute; inset:0; background:linear-gradient(transparent, rgba(0,0,0,0.8));
+               display:flex; flex-direction:column; justify-content:flex-end; padding:20px; color:white; }
