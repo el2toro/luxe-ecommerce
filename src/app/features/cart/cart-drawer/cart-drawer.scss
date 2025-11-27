@@ -1,0 +1,134 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 90%;
+  max-width: 420px;
+  background: #111;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px;
+}
+.item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.item img {
+  width: 100px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.info h4 {
+  margin: 4px 0;
+  font-size: 16px;
+}
+.details {
+  font-size: 12px;
+  color: #888;
+}
+.price {
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.actions button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+.remove {
+  background: #ff3b30 !important;
+}
+
+.promo {
+  padding: 20px;
+  display: flex;
+  gap: 12px;
+  background: rgba(30, 30, 30, 0.5);
+}
+.promo input {
+  flex: 1;
+  background: none;
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 12px;
+  color: white;
+}
+.promo button {
+  background: red; //$accent-gradient;
+  border: none;
+  color: white;
+  padding: 0 20px;
+  border-radius: 12px;
+}
+
+.summary {
+  padding: 20px;
+  background: rgba(30, 30, 30, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  font-size: 16px;
+}
+.discount {
+  color: #4ade80;
+}
+.total {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.checkout {
+  margin: 20px;
+  background: red; //$accent-gradient;
+  border: none;
+  color: white;
+  padding: 18px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.continue {
+  margin: 0 20px 20px;
+  background: none;
+  border: 1px solid #444;
+  color: white;
+  padding: 18px;
+  border-radius: 50px;
+}
