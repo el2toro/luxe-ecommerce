@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+    <main class="success">
+      <div class="confetti">✨</div>
+
+      <div class="card">
+        <div class="check">
+          <mat-icon>check_circle</mat-icon>
+        </div>
+
+        <h1>Thank You!</h1>
+        <p class="subtitle">Your order has been confirmed</p>
+
+        <div class="order-id">
+          Order <strong>#{{ (order$ | async)?.id }}</strong>
+        </div>
+
+        <div class="details">
+          <div class="row">
+            <span>Order Date</span>
+            <strong>{{ (order$ | async)?.date | date:'mediumDate' }}</strong>
+          </div>
+          <div class="row">
+            <span>Estimated Delivery</span>
+            <strong>Dec 3 – Dec 7, 2025</strong>
+          </div>
+          <div class="row">
+            <span>Total Amount</span>
+            <strong class="price">${{ (order$ | async)?.total | currency:'USD':'symbol':'1.0' }}</strong>
+          </div>
+        </div>
+
+        <div class="items">
+          <div class="item" *ngFor="let i of (order$ | async)?.items">
+            <img [src]="i.image" [alt]="i.name">
+            <div>
+              <p><strong>{{i.name}}</strong></p>
+              <p class="small">Size {{i.size}} • Qty {{i.quantity}}</p>
+            </div>
+            <span>${{i.price * i.quantity}}</span>
+          </div>
+        </div>
+
+        <div class="tracking">
+          <p>Tracking Number</p>
+          <strong>{{ (order$ | async)?.tracking }}</strong>
+          <button>Track Package →</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" routerLink="/">Continue Shopping</button>
+          <button class="secondary" routerLink="/account/orders">View All Orders</button>
+        </div>
+
+        <p class="footer-note">
+          A confirmation email has been sent to your inbox.
+          Questions? Contact our concierge at <a href="mailto:concierge@luxe.com">concierge@luxe.com</a>
+        </p>
+      </div>
+    </main>
+
+    <app-bottom-nav></app-bottom-nav>
