@@ -1,0 +1,25 @@
+<app-header></app-header>
+    <main class="orders">
+      <h2>My Orders</h2>
+      <div class="order-card" *ngFor="let o of orders">
+        <div class="header">
+          <div>
+            <strong>#{{o.id}}</strong>
+            <p>{{o.date | date:'mediumDate'}}</p>
+          </div>
+          <span class="status" [class.delivered]="o.status==='delivered'">{{o.status}}</span>
+        </div>
+        <div class="items">
+          <img [src]="o.items[0].image">
+          <div>
+            <p>{{o.items.length}} {{o.items.length === 1 ? 'item' : 'items'}}</p>
+            <strong>${{o.total}}</strong>
+          </div>
+        </div>
+        <div class="actions">
+          <button>Track Package</button>
+          <button>View Details</button>
+        </div>
+      </div>
+    </main>
+    <app-bottom-nav></app-bottom-nav>
