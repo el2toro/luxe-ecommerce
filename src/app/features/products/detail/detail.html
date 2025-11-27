@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+    <main class="pdp">
+      <div class="gallery">
+        <img src="{{product.image}}" alt="product">
+        <button class="view-3d">View in 3D</button>
+        <button class="ar">AR Try-On</button>
+      </div>
+
+      <div class="details">
+        <h1>{{product.name}}</h1>
+        <p class="brand">{{product.brand}}</p>
+        <p class="price">${{product.price}} <span class="old">${{product.oldPrice}}</span> <span class="sale">20% OFF</span></p>
+
+        <div class="sizes">
+          <button *ngFor="let s of ['XS','S','M','L','XL']" [class.active]="size===s" (click)="size=s">{{s}}</button>
+        </div>
+
+        <div class="colors">
+          <button *ngFor="let c of colors" [style.background]="c" [class.active]="color===c"></button>
+        </div>
+
+        <button class="add-to-cart" (click)="addToCart()">Add to Cart</button>
+        <button class="buy-now" (click)="buyNow()">Buy Now</button>
+      </div>
+    </main>
+
+    <app-bottom-nav></app-bottom-nav>
