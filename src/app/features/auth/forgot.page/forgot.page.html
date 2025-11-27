@@ -1,0 +1,16 @@
+<div class="auth-wrapper">
+  <div class="glass-card">
+    <h1>Reset Password</h1>
+    <p class="subtitle">Enter your email to receive a reset link</p>
+
+    <form [formGroup]="form" (ngSubmit)="sendReset()">
+      <input type="email" formControlName="email" placeholder="Email Address" />
+
+      <button type="submit" class="reset-btn" [disabled]="!form.valid">Send Reset Link</button>
+    </form>
+
+    <p class="back">
+      <a routerLink="/login">← Back to Sign In</a>
+    </p>
+  </div>
+</div>
