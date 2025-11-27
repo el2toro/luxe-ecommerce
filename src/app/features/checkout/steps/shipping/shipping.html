@@ -1,0 +1,20 @@
+<div class="step-card">
+      <h2>Shipping Address</h2>
+      <form>
+        <input placeholder="Full Name" [(ngModel)]="name" name="name">
+        <input placeholder="Street Address" [(ngModel)]="address" name="address">
+        <input placeholder="City" [(ngModel)]="city" name="city">
+        <div class="row">
+          <select [(ngModel)]="country" name="country">
+            <option>United States</option>
+            <option>United Kingdom</option>
+          </select>
+          <input placeholder="ZIP Code" [(ngModel)]="zip" name="zip">
+        </div>
+        <input placeholder="Phone Number" [(ngModel)]="phone" name="phone">
+      </form>
+
+      <button class="next" [disabled]="!canNext" (click)="checkout.nextStep()">
+        Continue to Payment
+      </button>
+    </div>

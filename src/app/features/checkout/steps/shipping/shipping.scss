@@ -1,0 +1,36 @@
+.step-card {
+  padding: 20px;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+}
+input,
+select {
+  width: 100%;
+  padding: 16px;
+  margin: 12px 0;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #444;
+  border-radius: 16px;
+  color: white;
+}
+.row {
+  display: flex;
+  gap: 12px;
+}
+.next {
+  width: 100%;
+  margin-top: 32px;
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  border: none;
+  color: white;
+  padding: 18px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
