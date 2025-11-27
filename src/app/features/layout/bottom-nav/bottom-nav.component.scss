@@ -1,0 +1,24 @@
+
+    .bottom-nav {
+      position:fixed; bottom:0; left:0; right:0;
+      height:84px; background:rgba(15,15,15,0.95);
+      backdrop-filter: blur(30px);
+      display:flex; justify-content:space-around;
+      align-items:center; z-index:1000;
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+    a { color:#888; text-decoration:none; text-align:center; font-size:12px; }
+    a.active { color:white; }
+    mat-icon { font-size:28px; width:28px; height:28px; }
+    .ar-btn {
+      position:relative; width:70px; height:70px;
+      background: linear-gradient(135deg, #9d4edd, #c77dff)t;
+      border-radius:50%; top:-25px;
+      display:grid; place-items:center;
+      box-shadow: 0 10px 30px rgba(157,78,221,0.4);
+    }
+    .ar-icon {
+      background:url('data:image/svg+xml,...') no-repeat center; /* purple camera */
+      width:40px; height:40px;
+      background-size:contain;
+    }
