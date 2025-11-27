@@ -1,0 +1,19 @@
+<header class="header">
+      <button class="menu-btn"><mat-icon>menu</mat-icon></button>
+      <h1 class="logo">LUXE</h1>
+      <div class="actions">
+        <app-mini-cart></app-mini-cart>
+        <button class="account" *ngIf="auth.isAuthenticated(); else loginBtn" routerLink="/account">
+    <mat-icon>person</mat-icon>
+  </button>
+  <ng-template #loginBtn>
+    <button routerLink="/login"><mat-icon>lock</mat-icon></button>
+  </ng-template>
+      </div>
+    </header>
+
+    <div class="search-bar">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="text" placeholder="Search luxury fashion...">
+      <button class="filter-btn"><mat-icon>tune</mat-icon></button>
+    </div>
