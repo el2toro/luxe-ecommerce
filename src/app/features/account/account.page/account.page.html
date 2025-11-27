@@ -1,0 +1,59 @@
+<app-header></app-header>
+
+    <main class="account">
+      <div class="profile-header">
+        <div class="avatar">A</div>
+        <div>
+          <h2>Alexander Voss</h2>
+          <p class="email">alexander@luxe.com</p>
+        </div>
+      </div>
+
+      <div class="membership-card">
+        <div class="gradient-bg"></div>
+        <div class="content">
+          <div class="badge">Elite Member</div>
+          <h3>LUXE Black</h3>
+          <p>Exclusive access • Early releases • Private events</p>
+          <div class="perks">
+            <span>Free Express Shipping</span>
+            <span>Personal Stylist</span>
+            <span>VIP Concierge</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu">
+        <a routerLink="/account/orders" class="item">
+          <mat-icon>receipt_long</mat-icon>
+          <span>My Orders</span>
+          <mat-icon class="arrow">chevron_right</mat-icon>
+        </a>
+        <a routerLink="/account/addresses" class="item">
+          <mat-icon>location_on</mat-icon>
+          <span>Saved Addresses</span>
+          <mat-icon class="arrow">chevron_right</mat-icon>
+        </a>
+        <a routerLink="/wishlist" class="item">
+          <mat-icon>favorite</mat-icon>
+          <span>Wishlist</span>
+          <span class="count">3</span>
+        </a>
+        <a class="item">
+          <mat-icon>card_giftcard</mat-icon>
+          <span>Gift Cards & Credits</span>
+          <strong>$1,250</strong>
+        </a>
+        <a class="item">
+          <mat-icon>settings</mat-icon>
+          <span>Account Settings</span>
+          <mat-icon class="arrow">chevron_right</mat-icon>
+        </a>
+        <a class="item logout">
+          <mat-icon>logout</mat-icon>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </main>
+
+    <app-bottom-nav></app-bottom-nav>
