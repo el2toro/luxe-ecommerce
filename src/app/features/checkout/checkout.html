@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+    <main class="checkout">
+      <div class="progress">
+        <div class="step" [class.active]="(vm$ | async)?.step === 1">1. Shipping</div>
+        <div class="line"></div>
+        <div class="step" [class.active]="(vm$ | async)?.step === 2">2. Payment</div>
+        <div class="line"></div>
+        <div class="step" [class.active]="((vm$ | async)?.step ?? 0) >= 3">3. Review</div>
+      </div>
+
+      <div class="content">
+        <!-- Steps will be lazy-loaded below -->
+        <ng-container [ngSwitch]="(vm$ | async)?.step">
+          <app-shipping *ngSwitchCase="1"></app-shipping>
+          <app-payment *ngSwitchCase="2"></app-payment>
+          <app-review *ngSwitchCase="3"></app-review>
+        </ng-container>
+      </div>
+
+      <!-- Floating Order Summary (mobile) -->
+      <button class="summary-toggle" (click)="showSummary = !showSummary">
+        Show Order Summary ${{ (cart.total$ | async) || 0 | currency:'USD':'symbol':'1.0' }}
+      </button>
+
+      <div class="summary-drawer" [class.open]="showSummary">
+        <div class="header">
+          <h3>Order Summary</h3>
+          <button (click)="showSummary = false"><mat-icon>close</mat-icon></button>
+        </div>
+        <div class="items">
+          <div class="item" *ngFor="let i of cart.items$ | async">
+            <img [src]="i.image">
+            <div>
+              <p>{{i.name}}</p>
+              <p>Size {{i.size}} • {{i.quantity}} × ${{i.price}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="total">
+          <span>Total</span>
+          <strong>${{ (cart.total$ | async) || 0 | currency:'USD':'symbol':'1.0' }}</strong>
+        </div>
+      </div>
+    </main>
+
+    <app-bottom-nav></app-bottom-nav>

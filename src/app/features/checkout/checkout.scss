@@ -1,0 +1,59 @@
+.checkout {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  min-height: 100vh;
+}
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.step {
+  font-weight: 600;
+}
+.step.active {
+  color: white;
+}
+.line {
+  flex: 1;
+  height: 2px;
+  background: #333;
+}
+.line.active {
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+}
+
+.content{
+  margin-bottom: 100px;
+}
+
+.summary-toggle {
+  position: fixed;
+  bottom: 90px;
+  left: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 50px;
+  font-size: 18px;
+  z-index: 99;
+}
+.summary-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  border-radius: 32px 32px 0 0;
+  padding: 20px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0, 0, 1);
+  z-index: 100;
+}
+.summary-drawer.open {
+  transform: translateY(0);
+}
