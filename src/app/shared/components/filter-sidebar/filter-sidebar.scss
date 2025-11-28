@@ -1,0 +1,13 @@
+.overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:998; }
+    .sidebar {
+      position:fixed; left:0; top:0; bottom:0; width:80%; max-width:340px;
+      background:#111; z-index:999; padding:20px; overflow-y:auto;
+    }
+    .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+    section { margin-bottom:32px; }
+    h4 { margin:0 0 16px; font-size:18px; }
+    label { display:block; margin:12px 0; }
+    .apply {
+      width:100%; background: linear-gradient(135deg, #9d4edd, #c77dff); border:none; color:white;
+      padding:16px; border-radius:50px; font-size:16px;
+    }

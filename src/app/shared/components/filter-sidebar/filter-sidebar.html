@@ -1,0 +1,22 @@
+<div class="overlay" (click)="close()"></div>
+    <aside class="sidebar">
+      <div class="header">
+        <h3>Filters</h3>
+        <button (click)="close()"><mat-icon>close</mat-icon></button>
+      </div>
+
+      <section>
+        <h4>Price Range</h4>
+        <input type="range" min="0" max="10000">
+        <p>$0 — ${{price}}</p>
+      </section>
+
+      <section>
+        <h4>Brands</h4>
+        <label *ngFor="let b of brands">
+          <input type="checkbox"> {{b}}
+        </label>
+      </section>
+
+      <button class="apply">Apply Filters</button>
+    </aside>
