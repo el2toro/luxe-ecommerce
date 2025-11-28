@@ -1,0 +1,20 @@
+.wishlist { padding-top: 100px; padding-bottom: 100px; min-height: 100vh; }
+    .header-section {
+      padding: 0 20px 32px; text-align: center;
+    }
+    h1 { font-family: 'Playfair Display', serif; font-size: 36px; margin: 0 0 8px; }
+    p { color: #aaa; font-size: 16px; }
+
+    .grid {
+      padding: 0 12px; display: grid;
+      grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+
+    .empty-state {
+      text-align: center; padding: 80px 40px; color: #888;
+    }
+    .empty-state mat-icon { font-size: 80px; width: 80px; height: 80px; opacity: 0.3; }
+    .empty-state button {
+      margin-top: 32px; background: linear-gradient(135deg, #9d4edd, #c77dff); color: white;
+      border: none; padding: 18px 32px; border-radius: 50px; font-size: 18px;
+    }

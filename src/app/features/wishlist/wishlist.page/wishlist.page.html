@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+    <main class="wishlist">
+      <div class="header-section">
+        <h1>My Wishlist</h1>
+        <p>{{wishlist.length}} {{wishlist.length === 1 ? 'item' : 'items'}}</p>
+      </div>
+
+      <div class="grid">
+        <app-product-card 
+          *ngFor="let item of wishlist" 
+          [product]="item"
+          (click)="removeFromWishlist(item.id)">
+        </app-product-card>
+      </div>
+
+      <div class="empty-state" *ngIf="wishlist.length === 0">
+        <mat-icon>favorite_border</mat-icon>
+        <h3>Your wishlist is empty</h3>
+        <p>Start adding pieces that speak to your soul</p>
+        <button routerLink="/">Explore Collections</button>
+      </div>
+    </main>
+
+    <app-bottom-nav></app-bottom-nav>
