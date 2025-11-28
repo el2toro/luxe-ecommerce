@@ -1,0 +1,81 @@
+<div class="vip-header">
+  <h1><span class="gradient">VIP LOUNGE</span></h1>
+  <p>842 ultra-high-net-worth clients • $842M lifetime spend</p>
+</div>
+
+<div class="vip-grid">
+  <!-- Top VIPs -->
+  <div class="vip-card royal" *ngFor="let v of topVIPs(); let i = index">
+    <div class="crown-rank">#{{ i + 1 }}</div>
+    <div class="avatar" [style.background-image]="'url(' + v.avatar + ')'"></div>
+    <div class="info">
+      <h3>{{ v.name }}</h3>
+      <p class="location"><mat-icon>location_on</mat-icon> {{ v.location }}</p>
+      <div class="stats">
+        <span
+          ><strong>${{ v.spent }}M</strong> spent</span
+        >
+        <span>•</span>
+        <span>{{ v.orders }} orders</span>
+      </div>
+    </div>
+    <div class="exclusive">
+      <mat-icon>diamond</mat-icon>
+      <span>{{ v.tier }}</span>
+    </div>
+  </div>
+</div>
+
+<!-- VIP Benefits Dashboard -->
+<div class="benefits-dashboard card">
+  <h2>Exclusive VIP Benefits</h2>
+  <div class="benefits">
+    <div class="benefit">
+      <mat-icon>flight</mat-icon>
+      <div>
+        <strong>Private Jet Pickup</strong>
+        <p>42 bookings this year</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <mat-icon>card_giftcard</mat-icon>
+      <div>
+        <strong>Personal Stylist</strong>
+        <p>128 sessions booked</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <mat-icon>event_available</mat-icon>
+      <div>
+        <strong>Fashion Week Front Row</strong>
+        <p>84 VIP passes issued</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <mat-icon>hotel_class</mat-icon>
+      <div>
+        <strong>Presidential Suite Access</strong>
+        <p>Monaco, Paris, Dubai</p>
+      </div>
+    </div>
+    
+
+    <!-- NEW #5 — EXACT STRUCTURE -->
+    <div class="benefit">
+      <mat-icon>lock_open</mat-icon>
+      <div>
+        <strong>Secret Vault Access</strong>
+        <p>One-of-one archive pieces</p>
+      </div>
+    </div>
+
+    <!-- NEW #6 — EXACT STRUCTURE -->
+    <div class="benefit">
+      <mat-icon>directions_boat</mat-icon>
+      <div>
+        <strong>Private Yacht Delivery</strong>
+        <p>Saint-Tropez • Mykonos • Ibiza</p>
+      </div>
+    </div>
+  </div>
+</div>
