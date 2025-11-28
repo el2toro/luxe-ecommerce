@@ -1,0 +1,56 @@
+<div class="page-header">
+      <h1>Marketing</h1>
+      <button class="btn-primary">New Campaign</button>
+    </div>
+
+    <div class="campaign-grid">
+      <div class="campaign-card" *ngFor="let c of campaigns()">
+        <div class="header">
+          <h3>{{c.name}}</h3>
+          <span class="status" [class.active]="c.active">{{c.active ? 'Active' : 'Completed'}}</span>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <mat-icon>visibility</mat-icon>
+            <div>
+              <strong>{{c.impressions | number}}</strong>
+              <small>Impressions</small>
+            </div>
+          </div>
+          <div class="metric">
+            <mat-icon>touch_app</mat-icon>
+            <div>
+              <strong>{{c.clicks | number}}</strong>
+              <small>Clicks</small>
+            </div>
+          </div>
+          <div class="metric">
+            <mat-icon>shopping_bag</mat-icon>
+            <div>
+              <strong>{{c.conversions}}</strong>
+              <small>Conversions</small>
+            </div>
+          </div>
+          <div class="metric">
+            <mat-icon>trending_up</mat-icon>
+            <div>
+              <strong>{{c.roi}}x</strong>
+              <small>ROI</small>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="channel">{{c.channel}}</div>
+          <div class="ctr">{{c.ctr}}% CTR</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="performance-chart card">
+      <h2>Campaign Performance Over Time</h2>
+      <div class="bars">
+        <div class="bar" *ngFor="let d of performanceData" [style.height.%]="d.height">
+          <div class="tooltip">${{d.revenue}}k</div>
+        </div>
+      </div>
+    </div>
