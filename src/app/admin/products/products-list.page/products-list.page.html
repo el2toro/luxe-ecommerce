@@ -1,0 +1,36 @@
+<div class="header">
+  <h2>Products</h2>
+  <button routerLink="new" class="btn-add">+ Add Product</button>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products()">
+        <td><img [src]="p.images[0]" class="thumb" /></td>
+        <td>
+          <strong>{{ p.name }}</strong>
+        </td>
+        <td>${{ p.price.toLocaleString() }}</td>
+        <td>{{ p.stock }}</td>
+        <td>
+          <span class="status" [class.published]="p.status === 'published'">{{ p.status }}</span>
+        </td>
+        <td>
+          <button class="btn btn-edit" routerLink="{{ p.id }}">Edit</button>
+          <button class="btn btn-delete" (click)="delete(p.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
