@@ -1,0 +1,66 @@
+.globe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: 2rem;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.globe-3d-container {
+  width: 100% !important;
+  height: 520px !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.globe-stats {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(1.2rem);
+  padding: 0.9rem 1.8rem;
+  border-radius: 3rem;
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.online{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  background: #34d399;
+  border-radius: 50%;
+  box-shadow: 0 0 1.2rem 0.2rem #34d399;
+  animation: pulse 2s infinite;
+}
+
+.live {
+  color: #34d399;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
