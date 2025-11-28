@@ -1,0 +1,220 @@
+<div class="dashboard">
+  <!-- Hero Header -->
+  <div class="hero-header">
+    <div class="greeting">
+      <h1>Welcome back, <span class="elite">Elite Admin</span></h1>
+      <p>Here's what's happening with LUXE today</p>
+    </div>
+    <div class="live-indicator">
+      <span class="pulse"></span>
+      <span>Live • {{ currentTime() }}</span>
+    </div>
+  </div>
+
+  <!-- KPI Grid (8 Cards) -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="icon-circle revenue">
+        <mat-icon>trending_up</mat-icon>
+      </div>
+      <div class="value">$1,284,920</div>
+      <div class="label">Revenue Today</div>
+      <div class="trend up">+28.4%</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="icon-circle orders">
+        <mat-icon>shopping_bag</mat-icon>
+      </div>
+      <div class="value">248</div>
+      <div class="label">Orders Today</div>
+      <div class="trend up">+12.8%</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="icon-circle conversion">
+        <mat-icon>insights</mat-icon>
+      </div>
+      <div class="value">4.79%</div>
+      <div class="label">Conversion Rate</div>
+      <div class="trend up">+1.2%</div>
+    </div>
+    
+    <div class="kpi-card">
+      <div class="icon-circle aov">
+        <mat-icon>monetization_on</mat-icon>
+      </div>
+      <div class="value">$5,180</div>
+      <div class="label">Avg. Order Value</div>
+      <div class="trend up">+18.2%</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="icon-circle cart">
+        <mat-icon>shopping_cart</mat-icon>
+      </div>
+      <div class="value">31.6%</div>
+      <div class="label">Cart Abandonment</div>
+      <div class="trend down">-8.1%</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="icon-circle live">
+        <mat-icon class="card-pulse">circle</mat-icon>
+      </div>
+      <div class="value">840</div>
+      <div class="label">Users Online Now</div>
+      <div class="trend live">LIVE</div>
+    </div>
+  </div>
+
+  <!-- Revenue + Sessions Dual Chart -->
+  <div class="dual-chart card">
+    <h2>Revenue & Sessions</h2>
+    <div class="chart-container">
+      <div class="revenue-bars">
+        <div class="bar" *ngFor="let d of revenueData" [style.height.%]="d.revenue">
+          <div class="tooltip">${{ d.value }}k</div>
+        </div>
+      </div>
+      <div
+        class="session-line"
+        [style.background]="
+          'conic-gradient(from 0deg, #c77dff ' +
+          sessionLine() +
+          '%, transparent ' +
+          sessionLine() +
+          '%)'
+        "
+      ></div>
+    </div>
+    <div class="legend">
+      <span
+        ><div class="dot revenue"></div>
+        Revenue</span
+      >
+      <span
+        ><div class="dot sessions"></div>
+        Sessions</span
+      >
+    </div>
+  </div>
+
+  <!-- World Map + Heatmap -->
+  <div class="globe-card card">
+    <div class="globe-header">
+      <h2>Live Visitors Worldwide</h2>
+    </div>
+
+    <div class="glob-section">
+      <app-globe></app-globe>
+      <div class="ranking-list">
+        <div
+          class="country-item"
+          *ngFor="let c of topCountries; let i = index"
+          [class.top3]="i < 3"
+        >
+          <div class="rank-container">
+            <div class="rank">
+              <h3>#{{ i + 1 }}</h3>
+            </div>
+            <div class="flag">
+              <h3>{{ c.flag }}</h3>
+            </div>
+          </div>
+          <div class="info-container">
+            <div class="info">
+              <div class="name">{{ c.name }}</div>
+              <div class="city">{{ c.city }}</div>
+            </div>
+            <div class="stats">
+              <div class="visitors">{{ c.visitors | number }}</div>
+              <div class="percent">{{ c.percent }}%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Products + AI Insights -->
+  <div class="grid-2">
+    <div class="top-products card">
+      <h2>Best Sellers This Week</h2>
+      <div class="product" *ngFor="let p of topProducts(); let i = index">
+        <div class="rank">#{{ i + 1 }}</div>
+        <img [src]="p.image" alt="" />
+        <div class="info">
+          <strong>{{ p.name }}</strong>
+          <p>{{ p.sales }} sold • ${{ p.revenue }}k</p>
+        </div>
+        <div class="growth">+{{ p.growth }}%</div>
+      </div>
+    </div>
+
+    <div class="ai-insights card">
+      <h2>AI Stylist Insights</h2>
+      <div class="insight">
+        <mat-icon>lightbulb</mat-icon>
+        <div>
+          <strong>AR Try-On drives 4.8× higher conversion</strong>
+          <p>Users who use AR are 480% more likely to purchase</p>
+        </div>
+      </div>
+      <div class="insight">
+        <mat-icon>trending_up</mat-icon>
+        <div>
+          <strong>Diamond Tennis Bracelet trending in UAE</strong>
+          <p>Search volume +380% in last 24h</p>
+        </div>
+      </div>
+      <div class="insight">
+        <mat-icon>local_fire_department</mat-icon>
+        <div>
+          <strong>Cashmere Coat about to sell out</strong>
+          <p>Only 8 units left • 89% sold in 48h</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Orders + Activity Feed -->
+  <div class="grid-2">
+    <div class="recent-orders card">
+      <h2>Recent Orders</h2>
+      <div class="order" *ngFor="let o of recentOrders()">
+        <div class="avatar">{{ o.customer[0] }}</div>
+        <div>
+          <strong>{{ o.customer }}</strong>
+          <p>#{{ o.id }} • ${{ o.total }}</p>
+        </div>
+        <span class="time">{{ o.time }}</span>
+      </div>
+    </div>
+
+    <div class="activity-feed card">
+      <h2>Activity Feed</h2>
+      <div class="activity">
+        <mat-icon>shopping_bag</mat-icon>
+        <div>
+          <strong>Alexander Voss</strong> purchased Cashmere Coat
+          <small>2 minutes ago • Paris</small>
+        </div>
+      </div>
+      <div class="activity">
+        <mat-icon>3d_rotation</mat-icon>
+        <div>
+          <strong>Emma Laurent</strong> used AR Try-On
+          <small>5 minutes ago • Monaco</small>
+        </div>
+      </div>
+      <div class="activity">
+        <mat-icon>star</mat-icon>
+        <div>
+          <strong>New review</strong> 5★ on Diamond Bracelet
+          <small>8 minutes ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
