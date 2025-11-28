@@ -1,0 +1,56 @@
+<div class="page-header">
+      <h1>Customers</h1>
+      <button class="btn-primary">Export CSV</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <h3>{{totalCustomers()}}</h3>
+        <p>Total Customers</p>
+      </div>
+      <div class="stat">
+        <h3>{{vipCount()}}</h3>
+        <p>VIP Members</p>
+      </div>
+      <div class="stat">
+        <h3>{{newThisMonth()}}</h3>
+        <p>New This Month</p>
+      </div>
+      <div class="stat">
+        <h3>${{lifetimeValue()}}</h3>
+        <p>Avg. Lifetime Value</p>
+      </div>
+    </div>
+
+    <div class="table-container card">
+      <table>
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Email</th>
+            <th>Orders</th>
+            <th>Total Spent</th>
+            <th>Status</th>
+            <th>Last Seen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of customers()">
+            <td>
+              <div class="customer">
+                <div class="avatar">{{c.name[0]}}</div>
+                <div>
+                  <strong>{{c.name}}</strong>
+                  <small *ngIf="c.vip" class="vip">VIP</small>
+                </div>
+              </div>
+            </td>
+            <td>{{c.email}}</td>
+            <td>{{c.orders}}</td>
+            <td><strong>${{c.spent.toLocaleString()}}</strong></td>
+            <td><span class="status" [class.active]="c.status === 'Active'">{{c.status}}</span></td>
+            <td>{{c.lastSeen}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>

@@ -1,0 +1,72 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display';
+  font-size: 40px;
+  margin: 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.stat {
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.stat h3 {
+  font-size: 36px;
+  margin: 0 0 8px;
+  background: linear-gradient(90deg, #c77dff, #9d4edd);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.stat p {
+  color: #aaa;
+  margin: 0;
+}
+.customer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+.vip {
+  color: #fbbf24;
+  font-size: 12px;
+  background: rgba(251, 191, 36, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 8px;
+}
+.status {
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.status.active {
+  background: rgba(52, 211, 153, 0.2);
+  color: #34d399;
+}
+.status {
+  background: rgba(156, 163, 175, 0.2);
+  color: #9ca3af;
+}
