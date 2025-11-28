@@ -1,0 +1,30 @@
+.mini-cart {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff3b30;
+  color: white;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.cart-open{
+  display: flex;
+}
