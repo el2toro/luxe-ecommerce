@@ -1,0 +1,80 @@
+<div class="overlay" (click)="close()"></div>
+
+    <aside class="panel">
+      <div class="header">
+        <h2>Filters</h2>
+        <button (click)="close()"><mat-icon>close</mat-icon></button>
+      </div>
+
+      <!-- Price Range -->
+      <section class="filter-section">
+        <h3>Price Range</h3>
+        <div class="slider-container">
+          <input type="range" min="0" max="10000" step="100" [(ngModel)]="filters().price[0]" class="slider">
+          <input type="range" min="0" max="10000" step="100" [(ngModel)]="filters().price[1]" class="slider">
+          <div class="slider-track" [style.left.%]="(filters().price[0]/10000)*100" [style.right.%]="100-(filters().price[1]/10000)*100"></div>
+        </div>
+        <div class="price-labels">
+          <span>${{filters().price[0]}}</span>
+          <span>${{filters().price[1]}}</span>
+        </div>
+      </section>
+
+      <!-- Sizes -->
+      <section class="filter-section">
+        <h3>Size</h3>
+        <div class="chip-grid">
+          <button 
+            *ngFor="let size of sizes" 
+            [class.active]="filters().selectedSizes.includes(size)"
+            (click)="toggleSize(size)"
+            class="size-chip">
+            {{size}}
+          </button>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section class="filter-section">
+        <h3>Color</h3>
+        <div class="color-grid">
+          <button 
+            *ngFor="let color of colors" 
+            [class.active]="filters().selectedColors.includes(color.name)"
+            (click)="toggleColor(color.name)"
+            class="color-chip"
+            [style.background]="color.hex">
+            <mat-icon *ngIf="filters().selectedColors.includes(color.name)">check</mat-icon>
+          </button>
+        </div>
+      </section>
+
+      <!-- Brands -->
+      <section class="filter-section">
+        <h3>Brand</h3>
+        <input type="text" placeholder="Search brands..." [(ngModel)]="brandSearch" class="search-input">
+        <div class="brand-list">
+          <label *ngFor="let brand of filteredBrands()">
+            <input type="checkbox" [checked]="filters().selectedBrands.includes(brand)" (change)="toggleBrand(brand)">
+            <span>{{brand}}</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Sort -->
+      <section class="filter-section">
+        <h3>Sort By</h3>
+        <select [(ngModel)]="filters().sortBy">
+          <option value="newest">Newest First</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="popular">Most Popular</option>
+        </select>
+      </section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="clear" (click)="clearAll()">Clear All</button>
+        <button class="apply" (click)="apply()">Apply Filters ({{activeCount()}})</button>
+      </div>
+    </aside>
