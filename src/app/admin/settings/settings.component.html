@@ -1,0 +1,43 @@
+<div class="page-header">
+      <h1>Settings</h1>
+      <button class="btn-primary">Save Changes</button>
+    </div>
+
+    <div class="settings-grid">
+      <div class="setting-card">
+        <h3><mat-icon>dark_mode</mat-icon> Appearance</h3>
+        <div class="toggle">
+          <span>Dark Mode</span>
+          <button [class.active]="darkMode()" (click)="toggle()">Toggle</button>
+        </div>
+      </div>
+
+      <div class="setting-card">
+        <h3><mat-icon>notifications</mat-icon> Notifications</h3>
+        <div class="options">
+          <label><input type="checkbox" checked> Low Stock Alerts</label>
+          <label><input type="checkbox" checked> New Orders</label>
+          <label><input type="checkbox"> VIP Customer Activity</label>
+        </div>
+      </div>
+
+      <div class="setting-card">
+        <h3><mat-icon>security</mat-icon> Security</h3>
+        <div class="options">
+          <button class="btn-outline">Change Password</button>
+          <button class="btn-outline">Enable 2FA</button>
+          <button class="btn-outline">API Keys</button>
+        </div>
+      </div>
+
+      <div class="setting-card brand">
+        <h3><mat-icon>palette</mat-icon> Brand Settings</h3>
+        <div class="brand-preview">
+          <div class="logo">LUXE</div>
+          <div class="colors">
+            <div class="color primary" style="background: #9d4edd"></div>
+            <div class="color accent" style="background: #c77dff"></div>
+          </div>
+        </div>
+      </div>
+    </div>
