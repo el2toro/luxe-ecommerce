@@ -1,0 +1,125 @@
+<div class="form-container">
+  <div class="header">
+    <h1>{{ isEdit() ? 'Edit Product' : 'Add New Product' }}</h1>
+    <div class="actions">
+      <button type="button" (click)="saveDraft()" class="btn-outline">Save Draft</button>
+      <button type="button" (click)="publish()" class="btn-primary">
+        {{ isEdit() ? 'Update' : 'Publish' }}
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="grid">
+      <!-- Left Column -->
+      <div class="left">
+        <!-- Images -->
+        <section class="section">
+          <h3>Product Images</h3>
+          <div
+            class="upload-area"
+            (drop)="onDrop($event)"
+            (dragover)="onDragOver($event)"
+            (click)="fileInput.click()"
+          >
+            <input
+              #fileInput
+              type="file"
+              multiple
+              accept="image/*"
+              (change)="onFilesSelected($event)"
+              hidden
+            />
+            <mat-icon>cloud_upload</mat-icon>
+            <p>Drop images here or click to upload</p>
+            <small>Up to 8 images • Max 10MB each</small>
+          </div>
+          <div class="image-grid">
+            <div class="image-item" *ngFor="let img of images(); let i = index">
+              <img [src]="img" alt="" />
+              <button class="remove" (click)="removeImage(i)">×</button>
+            </div>
+            <div class="image-item add" *ngIf="images().length < 8" (click)="fileInput.click()">
+              <mat-icon>add_photo_alternate</mat-icon>
+            </div>
+          </div>
+        </section>
+
+        <!-- AR Model -->
+        <section class="section">
+          <h3>AR Try-On Model (Optional)</h3>
+          <div class="upload-area small" (click)="arInput.click()">
+            <input
+              #arInput
+              type="file"
+              accept=".glb,.gltf"
+              (change)="onARSelected($event)"
+              hidden
+            />
+            <mat-icon>3d_rotation</mat-icon>
+            <p *ngIf="!arModel()">Click to upload .GLB model</p>
+            <p *ngIf="arModel()" class="success">
+              <mat-icon>check_circle</mat-icon> {{ arModel()?.name }}
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right">
+        <section class="section">
+          <h3>Basic Information</h3>
+          <input formControlName="name" placeholder="Product Name" class="full" />
+          <input formControlName="brand" placeholder="Brand (e.g. ATELIER NOIR)" />
+          <textarea formControlName="description" placeholder="Description" rows="4"></textarea>
+
+          <div class="row">
+            <input formControlName="price" type="number" placeholder="Price" />
+            <input
+              formControlName="comparePrice"
+              type="number"
+              placeholder="Compare at Price (optional)"
+            />
+          </div>
+        </section>
+
+        <!-- Variants -->
+        <section class="section">
+          <div class="flex-between">
+            <h3>Variants</h3>
+            <button type="button" (click)="addVariant()" class="btn-small">+ Add Variant</button>
+          </div>
+
+          <div class="variant" *ngFor="let v of variants(); let i = index" formArrayName="variants">
+            <div class="variant-row">
+              <select [formControlName]="i + '.size'">
+                <option *ngFor="let s of sizes" [value]="s">{{ s }}</option>
+              </select>
+              <div class="color-picker">
+                <input type="color" [formControlName]="i + '.colorHex'" />
+                <input type="text" [formControlName]="i + '.color'" placeholder="Color name" />
+              </div>
+              <input type="number" [formControlName]="i + '.stock'" placeholder="Stock" />
+              <button type="button" class="remove" (click)="removeVariant(i)">×</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEO & Tags -->
+        <section class="section">
+          <h3>SEO & Organization</h3>
+          <input formControlName="category" placeholder="Category" />
+          <input formControlName="tags" placeholder="Tags (comma separated)" />
+        </section>
+
+        <!-- Status -->
+        <section class="section">
+          <label class="toggle">
+            <input type="checkbox" formControlName="published" />
+            <span>Published (visible on site)</span>
+          </label>
+        </section>
+      </div>
+    </div>
+  </form>
+</div>
