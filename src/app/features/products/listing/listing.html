@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+    <main class="listing">
+      <div class="top-bar">
+        <button (click)="openFilters()">Filters</button>
+        <p>1,284 items</p>
+        <button>Sort ↓</button>
+
+        <button class="filter-btn" (click)="openFilters()">
+  <!-- <mat-icon>tune</mat-icon> Filters {{activeFilters > 0 ? `(${activeFilters})` : ''}} -->
+</button>
+
+<app-filter-panel *ngIf="filtersAreOpened"></app-filter-panel>
+      </div>
+
+      <div class="grid">
+        @for (product of products | async; track $index) {
+          <app-product-card [product]="product"></app-product-card>
+        }
+      </div>
+    </main>
+
+    <app-filter-sidebar *ngIf="filtersOpen"></app-filter-sidebar>
+    <app-bottom-nav></app-bottom-nav>
