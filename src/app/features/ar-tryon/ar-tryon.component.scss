@@ -1,0 +1,39 @@
+.ar-container {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+}
+.ar-ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  font-family: 'Playfair Display', serif;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: all;
+}
+.header h2 {
+  font-size: 28px;
+  margin: 0;
+  background: linear-gradient(90deg, #c77dff, #9d4edd);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.add-cart {
+  pointer-events: all;
+  text-align: center;
+}
+button {
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  color: white;
+  font-weight: bold;
+}

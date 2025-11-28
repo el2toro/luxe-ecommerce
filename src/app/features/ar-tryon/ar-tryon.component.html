@@ -1,0 +1,21 @@
+<div class="ar-container" #arContainer>
+      <!-- MindAR Camera View -->
+      <div id="mindar-container"></div>
+
+      <!-- Luxury UI Overlay -->
+      <div class="ar-ui" *ngIf="isReady()">
+        <div class="header">
+          <h2>Try On in AR</h2>
+          <button mat-icon-button (click)="close()" class="close-btn">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div class="loading" *ngIf="!isReady()">
+        <div class="spinner"></div>
+        <p>Initializing AR Engine...</p>
+      </div>
+    </div>
+
