@@ -1,0 +1,19 @@
+<a [routerLink]="['/product', product.id]" class="card">
+      <div class="img-wrapper">
+        <img [src]="product.image" [alt]="product.name">
+        <button class="wishlist" (click)="$event.preventDefault(); toggleWishlist()">
+          <mat-icon>{{ product.wishlisted ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+        <div class="sale" *ngIf="product.sale">20% OFF</div>
+        <button class="ar-quick" *ngIf="product.ar">Try with AR</button>
+      </div>
+
+      <div class="info">
+        <p class="brand">{{product.brand}}</p>
+        <h4 class="name">{{product.name}}</h4>
+        <p class="price">
+          <span class="current">${{product.price}}</span>
+          <span class="old" *ngIf="product.oldPrice">${{product.oldPrice}}</span>
+        </p>
+      </div>
+    </a>
