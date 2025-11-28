@@ -1,0 +1,145 @@
+<div class="analytics-header">
+  <div>
+    <h1>Analytics</h1>
+    <p>Real-time performance • Last 30 days</p>
+  </div>
+  <select class="period">
+    <option>Last 7 days</option>
+    <option selected>Last 30 days</option>
+    <option>Last 90 days</option>
+    <option>All time</option>
+  </select>
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+  <div class="kpi-card revenue">
+    <div class="icon"><mat-icon>trending_up</mat-icon></div>
+    <div>
+      <h3>${{ formatNumber(revenue()) }}</h3>
+      <p>Total Revenue</p>
+      <span class="trend up">+28.4%</span>
+    </div>
+  </div>
+  <div class="kpi-card sessions">
+    <div class="icon"><mat-icon>people</mat-icon></div>
+    <div>
+      <h3>{{ formatNumber(sessions()) }}</h3>
+      <p>Sessions</p>
+      <span class="trend up">+18.2%</span>
+    </div>
+  </div>
+  <div class="kpi-card conversion">
+    <div class="icon"><mat-icon>insights</mat-icon></div>
+    <div>
+      <h3>{{ conversionRate().toFixed(2) }}%</h3>
+      <p>Conversion Rate</p>
+      <span class="trend up">+1.2%</span>
+    </div>
+  </div>
+  <div class="kpi-card ar">
+    <div class="icon"><mat-icon>3d_rotation</mat-icon></div>
+    <div>
+      <h3>{{ formatNumber(arSessions()) }}</h3>
+      <p>AR Try-On Sessions</p>
+      <span class="trend up">+42.8%</span>
+    </div>
+  </div>
+
+  <!-- 10. VIP Customers -->
+<div class="kpi-card vip">
+  <div class="icon">
+    <mat-icon>diamond</mat-icon>
+  </div>
+  <div>
+    <h3>{{ 842 }}</h3>
+    <p>VIP Customers</p>
+    <span class="trend up">+18.9%</span>
+  </div>
+</div>
+
+<!-- 11. Instagram Reach -->
+<div class="kpi-card instagram">
+  <div class="icon">
+    <mat-icon>photo_camera</mat-icon>
+  </div>
+  <div>
+    <h3>{{ '2.84M' }}</h3>
+    <p>Instagram Reach</p>
+    <span class="trend up">+64.2%</span>
+  </div>
+</div>
+</div>
+
+<!-- Revenue Chart -->
+<div class="chart-card">
+  <h2>Revenue Over Time</h2>
+  <div class="chart revenue-chart">
+    <div class="bar" *ngFor="let day of revenueData" [style.height.%]="day.height">
+      <div class="tooltip">${{ day.value }}k</div>
+    </div>
+  </div>
+  <div class="labels">
+    <span *ngFor="let day of revenueData">{{ day.label }}</span>
+  </div>
+</div>
+
+<!-- Conversion Funnel -->
+<div class="funnel-card">
+  <h2>Conversion Funnel</h2>
+  <div class="funnel">
+    <div class="stage visitors">
+      <div class="number">{{ formatNumber(124820) }}</div>
+      <div class="label">Visitors</div>
+      <div class="bar" [style.width.%]="100"></div>
+    </div>
+    <div class="stage viewed">
+      <div class="number">{{ formatNumber(48720) }}</div>
+      <div class="label">Viewed Product</div>
+      <div class="bar" [style.width.%]="39"></div>
+    </div>
+    <div class="stage ar">
+      <div class="number">{{ formatNumber(18420) }}</div>
+      <div class="label">Used AR Try-On</div>
+      <div class="bar" [style.width.%]="38"></div>
+    </div>
+    <div class="stage cart">
+      <div class="number">{{ formatNumber(8420) }}</div>
+      <div class="label">Added to Cart</div>
+      <div class="bar" [style.width.%]="46"></div>
+    </div>
+    <div class="stage purchased">
+      <div class="number">{{ formatNumber(5982) }}</div>
+      <div class="label">Purchased</div>
+      <div class="bar" [style.width.%]="71"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Top Products + Traffic Sources -->
+<div class="grid-2">
+  <div class="top-products card">
+    <h2>Top Performing Products</h2>
+    <div class="product" *ngFor="let p of topProducts(); let i = index">
+      <span class="rank">#{{ i + 1 }}</span>
+      <img [src]="p.image" alt="" />
+      <div>
+        <strong>{{ p.name }}</strong>
+        <p>{{ p.sales }} sales • ${{ p.revenue }}k</p>
+      </div>
+      <div class="growth up">+{{ p.growth }}%</div>
+    </div>
+  </div>
+
+  <div class="traffic-sources card">
+    <h2>Traffic Sources</h2>
+    <div class="source" *ngFor="let s of trafficSources">
+      <div class="label">
+        <mat-icon>{{ s.icon }}</mat-icon>
+        <span>{{ s.name }}</span>
+      </div>
+      <div class="value">{{ s.percent }}%</div>
+      <div class="bar" [style.width.%]="s.percent"></div>
+    </div>
+  </div>
+</div>
