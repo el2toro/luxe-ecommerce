@@ -19,16 +19,16 @@ placeOrder() {
   const order: any = {
     id: 'LUXE' + Date.now(),
     date: new Date(),
-   // total: this.cart.total$() || 0,
-   // items: this.cart.items$() || [],
-  //  shipping: this.checkout.vm$().shipping,
+    total: this.cart.total$ || 0,
+    items: this.cart.items$ || [],
+   // shipping: this.checkout.vm$.shipping,
     status: 'processing',
     tracking: 'TRK' + Math.random().toString(36).substr(2, 9).toUpperCase()
   };
 
   this.orderService.placeOrder(order);
- //this.cart.clear(); // optional: empty cart
- // this.router.navigate(['/order', order.id]);
+   //this.cart.clear(); // optional: empty cart
+  this.router.navigate(['/order', order.id]);
  this.orderService.placeOrder(order);
   this.router.navigate(['/order', order.id]);
 }

@@ -3,10 +3,11 @@ import { AuthStore } from './core/auth/auth.store';
 import { RouterOutlet } from "@angular/router";
 import { CartDrawer } from "./features/cart/cart-drawer/cart-drawer";
 import { CommonModule } from '@angular/common';
+import { LiveStylistChatComponent } from "./shared/components/live-stylist-chat/live-stylist-chat.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CartDrawer, CommonModule],
+  imports: [RouterOutlet, CartDrawer, CommonModule, LiveStylistChatComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

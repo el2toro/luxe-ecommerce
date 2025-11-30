@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.form = this.fb.group({
-    email: ['alexander@luxe.com', [Validators.required, Validators.email]],
-    password: ['password123', Validators.required]
+    email: [null, Validators.required],
+    password: [null, Validators.required]
   });
   }
 
@@ -33,9 +33,14 @@ export class LoginComponent implements OnInit {
     this.auth.login('fake-jwt-token-123', {
       id: '1',
       name: 'Alexander Voss',
-      email: 'alexander@luxe.com',
-      isElite: true
+      email: this.form.controls['email'].value,
+      isElite: true,
+      password: this.form.controls['password'].value
+    }).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (error) => console.log(error)
     });
-    this.router.navigate(['/']);
   }
 }

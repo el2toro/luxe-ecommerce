@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product, ProductService } from '../../../core/services/product.service';
 
 interface Variant {
   size: string;
@@ -18,7 +19,9 @@ interface Variant {
   templateUrl: './product-form.page.html',
   styleUrl: './product-form.page.scss',
 })
-export class ProductFormPage {
+
+export class ProductFormPage{
+  private productService = inject(ProductService);
 route = inject(ActivatedRoute);
   router = inject(Router);
   fb = inject(FormBuilder);
@@ -41,13 +44,14 @@ route = inject(ActivatedRoute);
   });
 
   variants = computed(() => this.form.get('variants')?.value || []);
+  product!: Product;
 
   constructor() {
     effect(() => {
       const id = this.route.snapshot.paramMap.get('id');
       if (id && id !== 'new') {
         this.isEdit.set(true);
-        this.loadProduct(+id);
+        this.loadProduct(id);
       }
     });
   }
@@ -99,28 +103,66 @@ route = inject(ActivatedRoute);
     alert('Product saved as draft!');
   }
 
-  publish() {
-    console.log('Product published:', {
-      ...this.form.value,
-      images: this.images(),
-      arModel: this.arModel()?.name
-    });
-    alert('Product published successfully!');
-    this.router.navigate(['/admin/products']);
+  editProduct(){
+    this.productService.updateProduct(this.product).subscribe({
+    next: (updatedProduct) => this.router.navigate(['/admin/products'])
+  });
   }
 
-  loadProduct(id: number) {
-    // Mock data
+   createProduct(){
+    this.product = this.mapFormToProduct();
+    this.productService.createProduct(this.product).subscribe({
+    next: (cretedProduct) => this.router.navigate(['/admin/products'])
+  });
+  }
+
+  publish() {
+    this.isEdit()
+    ? this.editProduct()
+    : this.createProduct()
+  
+    // console.log('Product published:', {
+    //   ...this.form.value,
+    //   images: this.images(),
+    //   arModel: this.arModel()?.name
+    // });
+    // alert('Product published successfully!');
+    
+  }
+
+  loadProduct(productId: string) {
+
+    this.productService.getProductById(productId).subscribe({
+      next: (product) => {
+        this.product = product;
+        this.product.imageFile = 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+
     this.form.patchValue({
-      name: 'Cashmere Wool Coat',
-      brand: 'ATELIER NOIR',
-      price: 4800,
+      name: product.name,
+      description: product.description,
+      price: Number(product.price),
       published: true
     });
-    this.images.set(['https://images.unsplash.com/photo-1543508282-6313a1d3e1d4?w=800']);
+    this.images.set(['https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']);
+      }
+    })
   }
 
   save(){
 
+  }
+
+  mapFormToProduct() : Product{
+   return {
+      id: null,
+      name: this.form.get('name')?.value ?? '',
+      description: this.form.get('description')?.value ?? '',
+      price: this.form.get('price')?.value?.toString() ?? '',
+      isAvailable: true,
+      imageFile: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      rating: this.form.get('rating')?.value ?? 5,
+      sku: this.form.get('sku')?.value ?? '',   
+      categories: []
+   }
   }
 }

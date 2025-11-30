@@ -52,6 +52,7 @@ export class SignupPage implements OnInit {
       name: this.form.value.name!,
       email: this.form.value.email!,
       isElite: false,
+      password: this.form.value.password!
     });
     this.router.navigate(['/']);
   }
