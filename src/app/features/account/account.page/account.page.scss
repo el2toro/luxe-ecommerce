@@ -1,48 +1,113 @@
-.account { padding-top: 100px; padding-bottom: 100px; }
-    .profile-header {
-      display: flex; align-items: center; gap: 20px; padding: 20px;
-    }
-    .avatar {
-      width: 80px; height: 80px; background: linear-gradient(135deg, #9d4edd, #c77dff);
-      border-radius: 50%; display: grid; place-items: center;
-      font-size: 32px; font-weight: bold; color: white;
-    }
-    h2 { margin: 0; font-size: 24px; }
-    .email { color: #aaa; margin: 4px 0 0; }
+.account {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.email {
+  color: #aaa;
+  margin: 4px 0 0;
+}
 
-    .membership-card {
-      position: relative; margin: 32px 20px; border-radius: 28px; overflow: hidden;
-    }
-    .gradient-bg {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, #9d4edd, #5e2a8b, #c77dff);
-      opacity: 0.8;
-    }
-    .content {
-      position: relative; padding: 32px 24px; color: white; text-align: center;
-    }
-    .badge {
-      background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
-      padding: 6px 16px; border-radius: 50px; font-size: 12px; display: inline-block;
-    }
-    h3 { font-family: 'Playfair Display', serif; font-size: 28px; margin: 12px 0; }
-    .perks {
-      display: flex; justify-content: center; gap: 16px; margin-top: 20px; font-size: 14px;
-    }
-    .perks span { background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 50px; }
+.membership-card {
+  position: relative;
+  margin: 32px 20px;
+  border-radius: 28px;
+  overflow: hidden;
+}
+.gradient-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #9d4edd, #5e2a8b, #c77dff);
+  opacity: 0.8;
+}
+.content {
+  position: relative;
+  padding: 32px 24px;
+  color: white;
+  text-align: center;
+}
+.badge {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  display: inline-block;
+}
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  margin: 12px 0;
+}
+.perks {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.perks span {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 50px;
+}
 
-    .menu {
-      padding: 0 20px; margin-top: 32px;
-    }
-    .item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-      text-decoration: none; color: white;
-    }
-    .item mat-icon { color: #aaa; }
-    .arrow { margin-left: auto; color: #666; }
-    .count {
-      background: #ff3b30; color: white; font-size: 12px;
-      width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
-    }
-    .logout { color: #ff6b6b; }
+.menu {
+  padding: 0 20px;
+  margin-top: 32px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s;
+  border-radius: 12px;
+   &:hover{
+    cursor: pointer;
+    background: rgba(157, 78, 221, 0.2);
+  }
+}
+.item mat-icon {
+  color: #aaa;
+}
+.arrow {
+  margin-left: auto;
+  color: #666;
+}
+.count {
+  background: #ff3b30;
+  color: white;
+  font-size: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.logout {
+  color: #ff6b6b;
+}
