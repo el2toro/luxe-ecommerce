@@ -22,6 +22,7 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
+  "typeRoots": ["src/types"],
   "files": [],
   "references": [
     {
