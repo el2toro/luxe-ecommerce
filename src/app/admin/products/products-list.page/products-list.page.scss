@@ -40,12 +40,14 @@ th {
   padding: 6px 16px;
   border-radius: 50px;
   font-size: 12px;
+  font-weight: 500;
+  background: red;
 }
-.status.published {
+
+.status.available {
   background: #4ade80;
   color: black;
 }
-
 
 .btn{
   border: none;
@@ -68,4 +70,8 @@ th {
 
 .btn-edit {
  color: white;
+}
+
+.actions{
+  display: flex;
 }

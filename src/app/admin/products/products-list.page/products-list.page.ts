@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { Product, ProductService } from '../../../core/services/product.service';
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
-  status: 'published' | 'draft';
-  images: string[];
-}
+// interface Product {
+//   id: number;
+//   name: string;
+//   price: number;
+//   stock: number;
+//   status: 'published' | 'draft';
+//   images: string[];
+// }
 
 @Component({
   selector: 'app-products-list.page',
@@ -18,14 +19,21 @@ interface Product {
   templateUrl: './products-list.page.html',
   styleUrl: './products-list.page.scss',
 })
-export class ProductsListPage {
-products = signal<Product[]>([
-    { id: 1, name: 'Cashmere Wool Coat', price: 4800, stock: 8, status: 'published', images: ['https://images.unsplash.com/photo-1543508282-6313a1d3e1d4?w=600'] },
-    { id: 2, name: 'Diamond Tennis Bracelet', price: 18500, stock: 1, status: 'published', images: ['https://images.unsplash.com/photo-1605100804761-9a47a9e49c5c?w=600'] },
-    // ... more
-  ]);
+export class ProductsListPage implements OnInit {
+ private productService = inject(ProductService);
 
-  delete(id: number) {
-    this.products.update(p => p.filter(x => x.id !== id));
+ get products$(){
+  return this.productService.currentProducts$;
+ }
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts(){
+    this.productService.getProducts().subscribe();
+  }
+
+  delete(productId: any) {
+   this.productService.deleteProduct(productId).subscribe()
   }
 }

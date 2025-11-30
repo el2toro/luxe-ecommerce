@@ -9,28 +9,38 @@
       <tr>
         <th>Image</th>
         <th>Name</th>
+        <th>Description</th>
+        <th>Sku</th>
         <th>Price</th>
-        <th>Stock</th>
-        <th>Status</th>
+        <th>Raring</th>
+        <th>Available</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let p of products()">
-        <td><img [src]="p.images[0]" class="thumb" /></td>
+      @for (product of products$ | async; track $index) {
+      <tr>
+        <td><img [src]="product.imageFile" class="thumb" /></td>
         <td>
-          <strong>{{ p.name }}</strong>
+          <strong>{{ product.name }}</strong>
         </td>
-        <td>${{ p.price.toLocaleString() }}</td>
-        <td>{{ p.stock }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.sku }}</td>
+        <td>${{ product.price.toLocaleString() }}</td>
+        <td>{{ product.rating }}</td>
         <td>
-          <span class="status" [class.published]="p.status === 'published'">{{ p.status }}</span>
+          <span class="status" [class.available]="product.isAvailable">{{
+            product.isAvailable ? 'Yes' : 'No'
+          }}</span>
         </td>
         <td>
-          <button class="btn btn-edit" routerLink="{{ p.id }}">Edit</button>
-          <button class="btn btn-delete" (click)="delete(p.id)">Delete</button>
+          <div class="actions">
+            <button class="btn btn-edit" routerLink="{{ product.id }}">Edit</button>
+            <button class="btn btn-delete" (click)="delete(product.id)">Delete</button>
+          </div>
         </td>
       </tr>
+      }
     </tbody>
   </table>
 </div>
