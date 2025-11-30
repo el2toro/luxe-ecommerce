@@ -1,0 +1,51 @@
+<div class="chat-container">
+<!-- Floating Button -->
+  @if (!isOpen()) {
+      <button class="stylist-fab" (click)="toggle()" [class.active]="isOpen()">
+      <div class="avatar">
+        <img src="https://i.imgur.com/8Km9tLL.jpg" alt="Stylist Sofia">
+        <div class="online-dot"></div>
+      </div>
+      <span class="label">Talk to Sofia</span>
+      <mat-icon class="close-icon" *ngIf="isOpen()">close</mat-icon>
+    </button>
+  }
+
+    <!-- Chat Window -->
+    <div class="chat-window" [class.open]="isOpen()">
+      <div class="chat-header">
+        <div class="stylist-info">
+          <img src="https://i.imgur.com/8Km9tLL.jpg" alt="Sofia">
+          <div>
+            <h4>Sofia • Your Personal Stylist</h4>
+            <p class="status">● Online • Usually replies in seconds</p>
+          </div>
+        </div>
+        <button mat-icon-button (click)="close()">
+          <mat-icon>expand_more</mat-icon>
+        </button>
+      </div>
+
+      <div class="messages" #messagesContainer>
+@for (message of messageList; track $index) {
+    <div class="message" [class.bot]="message.isBot" [class.user]="!message.isBot">
+    <p>{{ message.text }}</p>
+    <small>{{ message.timestamp | date:'shortTime' }}</small>
+  </div>
+}
+</div>
+
+      <div class="quick-replies">
+        <button (click)="send('I need evening wear')">Evening Wear</button>
+        <button (click)="send('Show me new arrivals')">New In</button>
+        <button (click)="send('Something under $5,000')">Under $5K</button>
+      </div>
+
+      <form [formGroup]="form" class="input-area" (ngSubmit)="send()">
+        <input formControlName="message" type="text" placeholder="Message Sofia..." required />
+        <button class="submit-button" type="submit">
+          <mat-icon>send</mat-icon>
+        </button>
+      </form>
+    </div>
+</div>
