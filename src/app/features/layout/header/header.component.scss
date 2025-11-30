@@ -24,10 +24,14 @@
   border: none;
   color: white;
   font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+  transition: all 0.3s;
 
-  &:hover{
-    cursor: pointer;
-    opacity: 0.9;
+  &:hover {
+    background: rgba(157, 78, 221, 0.2);
+    transform: scale(1.1);
   }
 }
 .badge {
@@ -65,4 +69,20 @@ input {
 }
 .filter-btn {
   color: #888;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(157, 78, 221, 0.2);
+    transform: scale(1.1);
+  }
 }

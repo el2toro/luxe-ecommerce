@@ -1,5 +1,7 @@
 <header class="header">
-      <button class="menu-btn"><mat-icon>menu</mat-icon></button>
+      <button class="menu-btn" (click)="openMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
       <h1 class="logo">LUXE</h1>
       <div class="actions">
         <app-mini-cart></app-mini-cart>
@@ -12,8 +14,11 @@
       </div>
     </header>
 
-    <div class="search-bar">
+    <!-- SIDE MENU -->
+    <app-side-menu (close)="closeMenu()" [isOpen]="menuOpen"></app-side-menu>
+
+    <!-- <div class="search-bar">
       <mat-icon class="search-icon">search</mat-icon>
       <input type="text" placeholder="Search luxury fashion...">
       <button class="filter-btn"><mat-icon>tune</mat-icon></button>
-    </div>
+    </div> -->
