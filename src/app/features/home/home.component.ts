@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BottomNavComponent } from '../layout/bottom-nav/bottom-nav.component';
 import { HeaderComponent } from '../layout/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
@@ -9,7 +8,7 @@ import { CartStore } from '../../core/store/cart.store';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [BottomNavComponent, HeaderComponent, MatIconModule, CommonModule],
+  imports: [HeaderComponent, MatIconModule, CommonModule],
 })
 export class HomeComponent implements OnInit {
   private cart = inject(CartStore);
@@ -49,16 +48,6 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.cart.addItem({
-      id: 1,
-      name: 'Tailored Wool Blazer',
-      brand: 'ATELIER NOIR',
-      price: 1280,
-      oldPrice: 1600,
-      image: 'https://images.unsplash.com/photo-1596755092358-87e503d79f3c?w=600',
-      size: 'M',
-      color: 'Black',
-      quantity: 1,
-    });
+    
   }
 }
