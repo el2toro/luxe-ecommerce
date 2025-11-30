@@ -1,0 +1,266 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 230448,
+            "type": "VEC3",
+            "max": [
+                3.0571000576019289,
+                5.868299961090088,
+                13.813799858093262
+            ],
+            "min": [
+                -3.3815999031066896,
+                4.849599838256836,
+                0.9761999845504761
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 230448,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                0.9999788999557495,
+                0.9999583959579468
+            ],
+            "min": [
+                -1.0,
+                -0.9999997615814209,
+                -0.9999583959579468
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 230448,
+            "type": "VEC2",
+            "max": [
+                1.0,
+                1.0
+            ],
+            "min": [
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 230448,
+            "type": "SCALAR",
+            "max": [
+                230447
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 17712,
+            "type": "VEC3",
+            "max": [
+                0.4921000003814697,
+                5.708499908447266,
+                2.67549991607666
+            ],
+            "min": [
+                -0.47600001096725466,
+                4.72790002822876,
+                1.037500023841858
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 17712,
+            "type": "VEC3",
+            "max": [
+                0.9977203011512756,
+                0.999000608921051,
+                0.9999948740005493
+            ],
+            "min": [
+                -0.9977203011512756,
+                -0.9981911778450012,
+                -0.9944897890090942
+            ]
+        },
+        {
+            "bufferView": 6,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 17712,
+            "type": "VEC2",
+            "max": [
+                0.9980000257492065,
+                0.9627000093460083
+            ],
+            "min": [
+                0.0019000000320374966,
+                0.001900017261505127
+            ]
+        },
+        {
+            "bufferView": 7,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 17712,
+            "type": "SCALAR",
+            "max": [
+                17711
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 8933760,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 2765376,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 2765376,
+            "byteLength": 2765376,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 5530752,
+            "byteLength": 1843584,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 7374336,
+            "byteLength": 921792,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 8296128,
+            "byteLength": 212544,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 8508672,
+            "byteLength": 212544,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 8721216,
+            "byteLength": 141696,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 8862912,
+            "byteLength": 70848,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "necklace_gold",
+            "pbrMetallicRoughness": {
+                "metallicFactor": 0.0
+            }
+        },
+        {
+            "name": "necklace_stone",
+            "pbrMetallicRoughness": {
+                "metallicFactor": 0.0
+            }
+        },
+        {
+            "name": "material"
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[1]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 7,
+                    "attributes": {
+                        "POSITION": 4,
+                        "NORMAL": 5,
+                        "TEXCOORD_0": 6
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "empty_2",
+            "children": [
+                1,
+                2
+            ]
+        },
+        {
+            "name": "g necklace_silver",
+            "mesh": 0
+        },
+        {
+            "name": "g necklace_stone",
+            "mesh": 1
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
