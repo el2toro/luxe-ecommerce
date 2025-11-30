@@ -1,0 +1,45 @@
+<div class="side-menu-overlay" (click)="close.emit()" [class.open]="isOpen"></div>
+    
+    <div class="side-menu" [class.open]="isOpen">
+      <div class="menu-header">
+        <h2>LUXE</h2>
+        <button mat-icon-button (click)="close.emit()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <nav class="menu-links">
+        <a routerLink="/" (click)="close.emit()" class="menu-item">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </a>
+        <a routerLink="/shop" (click)="close.emit()" class="menu-item">
+          <mat-icon>diamond</mat-icon>
+          <span>Shop All</span>
+        </a>
+        <a routerLink="/women" (click)="close.emit()" class="menu-item">
+          <mat-icon>face</mat-icon>
+          <span>Women</span>
+        </a>
+        <a routerLink="/men" (click)="close.emit()" class="menu-item">
+          <mat-icon>man</mat-icon>
+          <span>Men</span>
+        </a>
+        <a routerLink="/jewelry" (click)="close.emit()" class="menu-item">
+          <mat-icon>watch</mat-icon>
+          <span>Jewelry & Watches</span>
+        </a>
+        <a routerLink="/bags" (click)="close.emit()" class="menu-item">
+          <mat-icon>shopping_bag</mat-icon>
+          <span>Bags</span>
+        </a>
+        <a routerLink="/ar-tryon" (click)="close.emit()" class="menu-item highlight">
+          <mat-icon>3d_rotation</mat-icon>
+          <span>AR Try-On</span>
+        </a>
+      </nav>
+
+      <div class="menu-footer">
+        <p>© 2025 LUXE • Dubai • Monaco • Paris</p>
+      </div>
+    </div>

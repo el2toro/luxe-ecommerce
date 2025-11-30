@@ -1,0 +1,93 @@
+:host {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.side-menu-overlay moonlight {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.side-menu-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -380px;
+  width: 380px;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+  border-right: 1px solid rgba(157, 78, 221, 0.3);
+  box-shadow: 20px 0 60px rgba(0, 0, 0, 0.8);
+  transition: left 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.menu-header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+}
+
+.menu-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin: 0;
+  background: linear-gradient(90deg, #c77dff, #9d4edd);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.menu-links {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 32px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s;
+  border-left: 4px solid transparent;
+}
+
+.menu-item:hover {
+  background: rgba(157, 78, 221, 0.15);
+  border-left-color: #c77dff;
+  padding-left: 40px;
+}
+
+.menu-item.highlight {
+  background: linear-gradient(90deg, rgba(157, 78, 221, 0.2), transparent);
+  border-left-color: #c77dff;
+}
+
+.menu-footer {
+  padding: 32px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
