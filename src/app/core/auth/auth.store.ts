@@ -1,5 +1,7 @@
 // src/app/core/auth/auth.store.ts
-import { Injectable, signal, computed } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import { map, Observable } from 'rxjs';
 
 export interface User {
   id: string;
@@ -7,6 +9,7 @@ export interface User {
   email: string;
   avatar?: string;
   isElite: boolean;
+  password: string;
 }
 
 export interface AuthState {
@@ -16,6 +19,8 @@ export interface AuthState {
 
 @Injectable({ providedIn: 'root' })
 export class AuthStore {
+  private baseUrl = 'https://localhost:7020/auth'
+  private http = inject(HttpClient);
   private state = signal<AuthState>({
     user: null,
     token: localStorage.getItem('luxe_token') || null
@@ -27,9 +32,12 @@ export class AuthStore {
   isAuthenticated = computed(() => !!this.state().token);
   isElite = computed(() => this.state().user?.isElite || false);
 
-  login(token: string, user: User) {
-    localStorage.setItem('luxe_token', token);
-    this.state.update(() => ({ token, user }));
+  login(token: string, user: User) : Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/login`, {username: user.email, password: user.password}).pipe(
+      map((response) => {
+         localStorage.setItem('luxe_token', response.accessToken);
+         this.state.update(() => ({ token, user }));
+    }));
   }
 
   logout() {
@@ -45,7 +53,7 @@ export class AuthStore {
       this.state.update(s => ({
         ...s,
         token,
-        user: { id: '1', name: 'Alexander Voss', email: 'alexander@luxe.com', isElite: true }
+        user: { id: '1', name: 'Alexander Voss', email: 'alexander@luxe.com', isElite: true, password: '12345' }
       }));
     }
   }
