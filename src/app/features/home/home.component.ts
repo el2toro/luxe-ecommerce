@@ -46,8 +46,38 @@ export class HomeComponent implements OnInit {
     },
   ];
   constructor() {}
+  // === REAL COUNTDOWN LOGIC (NEVER BREAKS) ===
+  nextDropDate = new Date('2025-12-06'); // Dubai time — change to your drop
+
+  // Live values bound to template
+  days = '00';
+  hours = '00';
+  minutes = '00';
+  seconds = '00';
 
   ngOnInit() {
-    
+    setInterval(() => this.startRealCountdown(), 1000);
+  }
+
+  private startRealCountdown() {
+    const now = new Date().getTime();
+    const target = this.nextDropDate.getTime();
+    let distance = target - now;
+
+    if (distance <= 0) {
+      // DROP IS LIVE!
+      this.days = this.hours = this.minutes = this.seconds = '00';
+      return;
+    }
+
+    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+    this.days = d.toString().padStart(2, '0');
+    this.hours = h.toString().padStart(2, '0');
+    this.minutes = m.toString().padStart(2, '0');
+    this.seconds = s.toString().padStart(2, '0');
   }
 }

@@ -112,18 +112,19 @@ h3 {
 }
 
 .brands {
-  display: flex;
-  overflow-x: auto;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
   padding-bottom: 8px;
 }
+
 .brand {
-  min-width: 120px;
   background: rgba(50, 50, 50, 0.8);
-  padding: 20px;
+  padding: 1.2rem;
   text-align: center;
-  border-radius: 24px;
+  border-radius: 0.8rem;
   backdrop-filter: blur(10px);
+  height: 4rem;
 }
 
 .categories-grid {
@@ -150,4 +151,265 @@ h3 {
   justify-content: flex-end;
   padding: 20px;
   color: white;
+}
+
+
+
+/* ─────────────────────── LIVE AUCTION ─────────────────────── */
+.live-auction {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #000 0%, #1a0033 100%);
+  text-align: center;
+  color: white;
+  border-bottom: 1px solid rgba(157,78,221,0.3);
+}
+.auction-header h3 { 
+  font-family: 'Playfair Display', serif; 
+  font-size: 32px; 
+  margin: 0 0 12px;
+}
+.timer {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #c77dff;
+  text-shadow: 0 0 30px rgba(199,125,255,0.6);
+}
+.auction-item {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.auction-item img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+}
+.current {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #c77dff, #9d4edd);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.bid-now {
+  background: linear-gradient(135deg, #ff3b30, #ff6b6b);
+  border: none;
+  color: white;
+  padding: 18px 48px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 15px 40px rgba(255,59,48,0.5);
+}
+
+/* ─────────────────────── CONCIERGE SERVICES ─────────────────────── */
+.concierge {
+  padding: 80px 20px;
+  background: #0a0a0a;
+}
+.concierge h3 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 48px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+.service {
+  background: rgba(157,78,221,0.1);
+  border: 1px solid rgba(157,78,221,0.3);
+  border-radius: 28px;
+  padding: 40px 24px;
+  text-align: center;
+  transition: all 0.4s;
+}
+.service:hover {
+  transform: translateY(-12px);
+  background: rgba(157,78,221,0.2);
+  box-shadow: 0 20px 40px rgba(157,78,221,0.3);
+}
+.service mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #c77dff;
+  margin-bottom: 16px;
+}
+
+/* ─────────────────────── THE JOURNAL ─────────────────────── */
+.journal {
+  padding: 80px 20px;
+  background: #000;
+}
+.journal h3 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 48px;
+}
+.articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+article {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #111;
+  transition: transform 0.4s;
+}
+article:hover { transform: translateY(-16px); }
+article img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+article h4 {
+  padding: 20px 20px 8px;
+  margin: 0;
+  font-size: 20px;
+}
+article p {
+  padding: 0 20px 24px;
+  color: #999;
+  margin: 0;
+}
+
+/* ─────────────────────── BLACK CARD WAITLIST GATE ─────────────────────── */
+.waitlist-gate {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #000 30%, #1a0033 100%);
+  text-align: center;
+  color: white;
+}
+.waitlist-gate h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  margin: 0 0 16px;
+}
+.exclusive {
+  font-size: 20px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+.waitlist-form {
+  max-width: 500px;
+  margin: 0 auto 32px;
+  display: flex;
+  gap: 16px;
+}
+.waitlist-form input {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(157,78,221,0.5);
+  border-radius: 50px;
+  padding: 20px 28px;
+  color: white;
+  font-size: 18px;
+}
+.waitlist-form input::placeholder { color: #777; }
+.discreet {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* ─────────────────────── INSTAGRAM FEED ─────────────────────── */
+.instagram {
+  padding: 80px 20px;
+  background: #0a0a0a;
+}
+.instagram h3 { text-align: center; font-size: 36px; margin-bottom: 48px; }
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.insta-post {
+  aspect-ratio: 1;
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+  border-radius: 20px;
+  background-size: 300%;
+  animation: gradient 8s ease infinite;
+}
+
+/* ─────────────────────── TRUST BADGES ─────────────────────── */
+.trust {
+  padding: 60px 20px;
+  background: #000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
+.badge {
+  background: rgba(157,78,221,0.15);
+  border: 1px solid rgba(157,78,221,0.4);
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #c77dff;
+}
+
+/* ─────────────────────── WORLDWIDE BOUTIQUES ─────────────────────── */
+.locations {
+  padding: 100px 20px;
+  background: #0a0a0a;
+  text-align: center;
+}
+.locations h3 { font-size: 36px; margin-bottom: 60px; }
+.map-locations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  font-size: 18px;
+}
+.location {
+  background: rgba(157,78,221,0.1);
+  padding: 16px 32px;
+  border-radius: 50px;
+  border: 1px solid rgba(157,78,221,0.3);
+}
+
+/* ─────────────────────── FINAL CTA ─────────────────────── */
+.final-cta {
+  padding: 140px 20px;
+  background: linear-gradient(135deg, #000, #1a0033, #000);
+  text-align: center;
+  color: white;
+}
+.final-cta h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  margin: 0 0 40px;
+  background: linear-gradient(90deg, #fff, #c77dff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.mega-cta {
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  border: none;
+  color: white;
+  padding: 24px 80px;
+  border-radius: 60px;
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: 0 20px 60px rgba(157,78,221,0.6);
+  transition: all 0.4s;
+}
+.mega-cta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(157,78,221,0.8);
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
