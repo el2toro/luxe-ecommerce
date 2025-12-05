@@ -1,0 +1,25 @@
+<div class="failed-page">
+  <div class="failed-container">
+    <h1>Payment Declined</h1>
+    <p>Your card was not charged.</p>
+
+    <div class="reasons">
+      <p>Possible reasons:</p>
+      <ul>
+        <li>Insufficient funds</li>
+        <li>Card declined by bank</li>
+        <li>3D Secure required</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <button class="try-again" routerLink="/checkout">Try Again</button>
+      <button class="contact-sofia">
+        <mat-icon>chat</mat-icon>
+        Message Sofia (Alternative Payment)
+      </button>
+    </div>
+
+    <p class="discreet">Your information is secure • We never store card details</p>
+  </div>
+</div>
