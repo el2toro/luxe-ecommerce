@@ -11,7 +11,7 @@ import { Payment } from "./steps/payment/payment";
 
 @Component({
   selector: 'app-checkout',
-  imports: [BottomNavComponent, HeaderComponent, AsyncPipe, CurrencyPipe, MatIconModule, CommonModule, Shipping, Review, Payment],
+  imports: [HeaderComponent, AsyncPipe, CurrencyPipe, MatIconModule, CommonModule, Shipping, Review, Payment],
   templateUrl: './checkout.html',
   styleUrl: './checkout.scss',
 })
@@ -20,5 +20,8 @@ export class Checkout {
   public cart = inject(CartStore);
   vm$ = this.checkout.vm$;
   showSummary = false;
+
   constructor() {}
+
+  
 }

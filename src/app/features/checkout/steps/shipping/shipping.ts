@@ -12,6 +12,7 @@ export class Shipping implements OnInit{
   ngOnInit(): void {
     this.checkout.vm$.subscribe({next: (data) => this.shipping = data.shipping}); 
   }
+
   checkout = inject(CheckoutStore);
   canNext = false;
   shipping: any; 
@@ -33,4 +34,9 @@ export class Shipping implements OnInit{
 
   get zip() { return this.shipping.zip}
   set zip(v) { this.checkout.setShipping({ zip: v }); }
+
+  nextStep(){
+    console.log('next step')
+    this.checkout.nextStep()
+  }
 }

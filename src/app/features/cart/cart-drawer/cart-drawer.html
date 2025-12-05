@@ -33,7 +33,7 @@
 
   <div class="promo">
     <input type="text" placeholder="Promo code" [(ngModel)]="code" />
-    <button (click)="apply()">Apply</button>
+    <button class="apply-button" (click)="apply()">Apply</button>
   </div>
 
   <div class="summary">
@@ -55,6 +55,6 @@
     </div>
   </div>
 
-  <button class="checkout">Proceed to Checkout</button>
-  <button class="continue">Continue Shopping</button>
+  <button class="checkout" routerLink="/checkout" (click)="proceedToCheckout()">Proceed to Checkout</button>
+  <button class="continue" (click)="continueShooping()">Continue Shopping</button>
 </aside>

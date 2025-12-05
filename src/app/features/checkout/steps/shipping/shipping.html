@@ -14,7 +14,7 @@
         <input placeholder="Phone Number" [(ngModel)]="phone" name="phone">
       </form>
 
-      <button class="next" [disabled]="!canNext" (click)="checkout.nextStep()">
+      <button class="next" (click)="nextStep()">
         Continue to Payment
       </button>
     </div>
