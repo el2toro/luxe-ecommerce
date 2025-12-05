@@ -1,0 +1,101 @@
+<app-header></app-header>
+<section class="shop-page">
+  <!-- HERO BANNER -->
+  <div class="shop-hero">
+    <h1>Exclusive Collection</h1>
+    <p>Only 1,847 pieces available worldwide</p>
+  </div>
+
+  <!-- FILTERS + GRID -->
+  <div class="shop-container">
+    <!-- LEFT SIDEBAR FILTERS -->
+    <aside class="filters-sidebar">
+      <h3>Filters</h3>
+
+      <!-- Category -->
+      <div class="filter-group">
+        <h4>Category</h4>
+        <label><input type="checkbox" [(ngModel)]="filters.watches"> Swiss Watches</label>
+        <label><input type="checkbox" [(ngModel)]="filters.jewelry"> Haute Joaillerie</label>
+        <label><input type="checkbox" [(ngModel)]="filters.bags"> Rare Handbags</label>
+        <label><input type="checkbox" [(ngModel)]="filters.couture"> Haute Couture</label>
+      </div>
+
+      <!-- Price Range -->
+      <div class="filter-group">
+        <h4>Price</h4>
+        <div class="price-range">
+          <input type="range" min="0" max="1000000" step="10000" [(ngModel)]="filters.maxPrice">
+          <span>Up to ${{filters.maxPrice | number}}</span>
+        </div>
+      </div>
+
+      <!-- Brand -->
+      <div class="filter-group">
+        <h4>Brand</h4>
+        <select [(ngModel)]="filters.brand">
+          <option value="">All Brands</option>
+          <option>Patek Philippe</option>
+          <option>Rolex</option>
+          <option>Audemars Piguet</option>
+          <option>Hermès</option>
+          <option>Cartier</option>
+          <option>Van Cleef & Arpels</option>
+        </select>
+      </div>
+
+      <button class="apply-filters" (click)="applyFilters()">Apply Filters</button>
+      <button class="clear-filters" (click)="clearFilters()">Clear All</button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="shop-main">
+      <!-- TOP BAR -->
+      <div class="shop-controls">
+        <div class="results-count">{{filteredProducts.length}} pieces available</div>
+        
+        <div class="controls-right">
+          <button (click)="toggleView()" class="view-toggle">
+            <mat-icon>{{gridView ? 'grid_view' : 'view_list'}}</mat-icon>
+          </button>
+          <select [(ngModel)]="sortBy" (change)="sortProducts()">
+            <option value="newest">Newest First</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rarity">Rarity Score</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="products-grid" [class.list-view]="!gridView">
+        <article class="product-card" *ngFor="let p of filteredProducts">
+          <div class="image-wrapper">
+            <img [src]="p.image" [alt]="p.name" loading="lazy">
+            <button class="wishlist-btn" (click)="toggleWishlist(p)">
+              <mat-icon>{{p.wishlisted ? 'favorite' : 'favorite_border'}}</mat-icon>
+            </button>
+            <div class="badge" *ngIf="p.rarity">{{p.rarity}}</div>
+            <div class="sold-out" *ngIf="p.sold">Sold</div>
+          </div>
+
+          <div class="product-info">
+            <h3>{{p.name}}</h3>
+            <p class="brand">{{p.brand}}</p>
+            <p class="price">${{p.price | number}}</p>
+            
+            <button class="add-to-cart" (click)="addToCart(p)" [disabled]="p.sold">
+              {{p.sold ? 'Sold Out' : 'Add to Cart'}}
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- CART FLOATING BUTTON -->
+      <button class="cart-fab" (click)="openCart()">
+        <mat-icon>shopping_bag</mat-icon>
+        <span class="cart-count">{{cartItems.length}}</span>
+      </button>
+    </div>
+  </div>
+</section>
