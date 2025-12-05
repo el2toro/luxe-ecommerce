@@ -1,0 +1,55 @@
+.success-page {
+  background: #000;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.success-container h1 {
+  font-size: 64px;
+  margin: 0 0 24px;
+  background: linear-gradient(90deg, #c77dff, #9d4edd);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: #34d399;
+  margin: 32px 0;
+}
+
+.next-steps {
+  margin: 60px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.continue-btn {
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  border: none;
+  color: white;
+  padding: 20px 60px;
+  border-radius: 50px;
+  font-size: 20px;
+  margin-top: 40px;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
