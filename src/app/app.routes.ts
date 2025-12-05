@@ -26,39 +26,47 @@ import { MarketingComponent } from './admin/marketing/marketing.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { VipLoungeComponent } from './admin/vip-lounge/vip-lounge.component';
 import { ArTryonComponent } from './features/ar-tryon/ar-tryon.component';
+import { ShopComponent } from './features/shop/shop.component';
+import { CheckoutSuccessComponent } from './features/checkout/checkout-success/checkout-success.component';
+import { CheckoutFailedComponent } from './features/checkout/checkout-failed/checkout-failed.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupPage },
   { path: 'forgot', component: ForgotPage },
+  { path: 'shop', component: ShopComponent },
   { path: 'categories', component: CategoriesPage },
   { path: 'ar-tryon', component: ArTryonComponent },
   { path: 'category/:slug', component: Listing },
   { path: 'product/:id', component: Detail },
   { path: 'checkout', component: Checkout },
+  { path: 'checkout/success', component: OrderSuccess },
+  { path: 'checkout/failed', component: CheckoutFailedComponent },
+
   { path: 'order/:id', component: OrderSuccess },
   { path: 'wishlist', component: WishlistPage },
   { path: 'account', component: AccountPage },
   { path: 'account/orders', component: OrdersPage },
   { path: 'account/addresses', component: AddressesPage },
   {
-  path: 'admin',
-  canMatch: [() => inject(AuthStore).isElite()], component: AdminLayout,
-  children: [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    { path: 'dashboard', component: DashboardPage },
-    { path: 'products', component: ProductsListPage },
-    { path: 'products/new', component: ProductFormPage },
-    { path: 'products/:id', component: ProductFormPage },
-    { path: 'orders', component: OrdersListPage },
-    { path: 'analytics', component: AnalyticsPage },
-    { path: 'customers', component: CustomersPage },
-    { path: 'marketing', component: MarketingComponent },
-    { path: 'settings', component: SettingsComponent },
-    { path: 'vip-lounge', component: VipLoungeComponent },
-  ],
-},
+    path: 'admin',
+    canMatch: [() => inject(AuthStore).isElite()],
+    component: AdminLayout,
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardPage },
+      { path: 'products', component: ProductsListPage },
+      { path: 'products/new', component: ProductFormPage },
+      { path: 'products/:id', component: ProductFormPage },
+      { path: 'orders', component: OrdersListPage },
+      { path: 'analytics', component: AnalyticsPage },
+      { path: 'customers', component: CustomersPage },
+      { path: 'marketing', component: MarketingComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'vip-lounge', component: VipLoungeComponent },
+    ],
+  },
   { path: '**', redirectTo: '' },
 ];
 
