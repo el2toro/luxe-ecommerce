@@ -1,6 +1,6 @@
 <div class="payment-step">
       <h2>Select Payment Method</h2>
-      <p class="total">Total: ${{ 1500 }}</p>
+      <p class="total">Total: {{ 450 / 100 | currency: '$' }}</p>
 
       <div id="payment-element">
         <!-- All payment methods injected here -->
@@ -8,6 +8,6 @@
 
       <div class="actions">
         <button class="back-btn" (click)="back.emit()">← Back</button>
-        <button class="pay-btn" (click)="pay()">Pay ${{ 1500 }}</button>
+        <button class="pay-btn" (click)="pay()">Pay {{ 450 / 100 | currency: '$' }}</button>
       </div>
     </div>
