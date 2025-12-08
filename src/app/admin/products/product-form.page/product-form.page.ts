@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, OnInit, signal } from '@angular/co
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product, ProductService } from '../../../core/services/product.service';
+import { Product, ProductService } from '../../../core/services/catalog.service';
 
 interface Variant {
   size: string;

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { OrderService } from '../../../../core/services/order.service';
+import { OrderingService } from '../../../../core/services/ordering.service';
 import { CartStore } from '../../../../core/store/cart.store';
 import { CheckoutStore } from '../../../../core/store/checkout.store';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './review.scss',
 })
 export class Review {
-  private orderService = inject(OrderService);
+  private orderService = inject(OrderingService);
    private cart = inject(CartStore);
    private checkout = inject(CheckoutStore);
    private router = inject(Router);

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { Product, ProductService } from '../../../core/services/product.service';
+import { Product, ProductService } from '../../../core/services/catalog.service';
 
 // interface Product {
 //   id: number;
