@@ -18,7 +18,7 @@
         <div class="details">
           <div class="row">
             <span>Order Date</span>
-            <strong>{{ (order$ | async)?.date | date:'mediumDate' }}</strong>
+            <strong>{{ (order$ | async)?.orderDate| date:'mediumDate' }}</strong>
           </div>
           <div class="row">
             <span>Estimated Delivery</span>
@@ -26,24 +26,24 @@
           </div>
           <div class="row">
             <span>Total Amount</span>
-            <strong class="price">${{ (order$ | async)?.total | currency:'USD':'symbol':'1.0' }}</strong>
+            <strong class="price">${{ (order$ | async)?.totalAmount | currency:'USD':'symbol':'1.0' }}</strong>
           </div>
         </div>
 
         <div class="items">
-          <div class="item" *ngFor="let i of (order$ | async)?.items">
-            <img [src]="i.image" [alt]="i.name">
+          <div class="item" *ngFor="let i of (order$ | async)?.orderItems">
+            <img [src]="i.productImageUrl" [alt]="i.productName">
             <div>
-              <p><strong>{{i.name}}</strong></p>
-              <p class="small">Size {{i.size}} • Qty {{i.quantity}}</p>
+              <p><strong>{{i.productName}}</strong></p>
+              <p class="small">Size {{i.quantity}} • Qty {{i.quantity}}</p>
             </div>
-            <span>${{i.price * i.quantity}}</span>
+            <span>${{i.unitPrice * i.quantity}}</span>
           </div>
         </div>
 
         <div class="tracking">
           <p>Tracking Number</p>
-          <strong>{{ (order$ | async)?.tracking }}</strong>
+          <strong>{{ (order$ | async)?.orderNumber }}</strong>
           <button>Track Package →</button>
         </div>
 
@@ -58,5 +58,3 @@
         </p>
       </div>
     </main>
-
-    <app-bottom-nav></app-bottom-nav>
