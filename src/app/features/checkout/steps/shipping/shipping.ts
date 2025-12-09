@@ -44,23 +44,20 @@ export class Shipping implements OnInit{
 
     this.orderingService.placeOrder(createOrderRequest).subscribe({
       next: (orderDetails) => {
-        this.checkout.setCreatedOrderId(orderDetails.id);
-        this.checkout.setCustomerId(orderDetails.customerId);
         this.checkout.nextStep();
       }
     });
   }
 
   mapToOrderRequest(): CreateOrderRequestModel{
-    let orederRequest = new CreateOrderRequestModel();
-    orederRequest.shippingAddress = this.mapAddress();
-    orederRequest.billingAddress = this.mapAddress();
-    orederRequest.currency = 'eur';
-    orederRequest.customerId = 'c56a4180-65aa-42ec-a945-5fd21dec0538';
-    orederRequest.customerNotes = 'Please deliver between 09:00 AM - 03:00 PM';
-    orederRequest.orderItems = this.getOrderItems();
-
-    return orederRequest;
+    return {
+      shippingAddress: this.mapAddress(),
+      billingAddress: this.mapAddress(),
+      currency: 'eur',
+      customerId: 'c56a4180-65aa-42ec-a945-5fd21dec0538',
+      customerNotes: 'Please deliver between 09:00 AM - 03:00 PM',
+      orderItems: this.getOrderItems()
+    };
   }
 
   mapAddress() : AddressModel{
@@ -79,10 +76,10 @@ export class Shipping implements OnInit{
     return [
       {
       "productId": "f1a2d3b4-c567-4a7b-8b9a-2d3f8e5c7f2d",
-      "productName": "new product",
+      "productName": "new product 2",
       "productImageUrl": "product1.jpg",
       "productSku": "UFG56",
-      "unitPrice": 19.99,
+      "unitPrice": 59.99,
       "quantity": 1,
       "discount": 10.0
     },
@@ -91,7 +88,7 @@ export class Shipping implements OnInit{
       "productName": "new product",
       "productImageUrl": "product2.jpg",
       "productSku": "UFG56",
-      "unitPrice": 49.99,
+      "unitPrice": 89.99,
       "quantity": 2,
       "discount": 5.0
     }

@@ -5,7 +5,6 @@ import {
   inject,
   Input,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import { CheckoutStore } from '@core/store/checkout.store';
@@ -23,7 +22,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './payment.scss',
 })
 export class Payment implements AfterViewInit, OnDestroy {
-  @Input() userData: any;
   @Output() next = new EventEmitter();
   @Output() back = new EventEmitter();
   private paymentService = inject(PaymentService);
@@ -32,12 +30,14 @@ export class Payment implements AfterViewInit, OnDestroy {
   private elements: any;
   private paymentElement: any;
   stripe!: Stripe | null;
+  orderId!: string;
 
   async ngAfterViewInit() {
     this.stripe = await this.stripeService.getStripe();
     
      this.checkout.vm$.subscribe({
       next: (checkoutState) => {
+        this.orderId = checkoutState.orderId;
         this.createPaymentIntent(checkoutState.customerId, checkoutState.orderId)
       },
     });
@@ -55,8 +55,6 @@ export class Payment implements AfterViewInit, OnDestroy {
       orderId: orderId
     };
 
-    console.log(paymentIntent);
-
     this.paymentService.createPaymentIntent(paymentIntent).subscribe({
       next: (paymentIntent) => this.configurePayment(paymentIntent.clientSecret),
     });
@@ -73,7 +71,7 @@ export class Payment implements AfterViewInit, OnDestroy {
     this.stripe!.confirmPayment({
       elements: this.elements,
       confirmParams: {
-        return_url: 'https://localhost:4200/checkout/success',
+        return_url: `https://localhost:4200/checkout/success?orderId=${this.orderId}`,
       },
     });
 
