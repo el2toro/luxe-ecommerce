@@ -2,12 +2,12 @@
 
 <aside class="drawer">
   <div class="header">
-    <h2>Your Cart ({{ (totalItems$ | async)! }})</h2>
+    <h2>Your Cart ({{ totalItems }})</h2>
     <button (click)="close()"><mat-icon>close</mat-icon></button>
   </div>
 
   <div class="items">
-    <div class="item" *ngFor="let item of items$ | async">
+    <div class="item" *ngFor="let item of items ">
       <img [src]="item.image" [alt]="item.name" />
       <div class="info">
         <p class="brand">{{ item.brand }}</p>
@@ -17,14 +17,14 @@
       </div>
 
       <div class="actions">
-        <button (click)="cart.updateQuantity({ id: item.id, quantity: item.quantity - 1 })">
+        <button >
           -
         </button>
         <span>{{ item.quantity }}</span>
-        <button (click)="cart.updateQuantity({ id: item.id, quantity: item.quantity + 1 })">
+        <button >
           +
         </button>
-        <button class="remove" (click)="cart.removeItem(item.id)">
+        <button class="remove">
           <mat-icon>delete_outline</mat-icon>
         </button>
       </div>
@@ -39,19 +39,19 @@
   <div class="summary">
     <div class="row">
       <span>Subtotal</span>
-      <span>${{ subtotal$ | async | currency : 'USD' : 'symbol' : '1.0' }}</span>
+      <span>{{ subtotal | currency : 'USD' : 'symbol' : '1.0' }}</span>
     </div>
-    <div class="row discount" *ngIf="((discount$ | async) ?? 0) > 0">
+    <div class="row discount" *ngIf="(discount ?? 0) > 0">
       <span>Discount (25%)</span>
       <span
-        >-${{
-          (subtotal$ | async)! * (discount$ | async)! | currency : 'USD' : 'symbol' : '1.0'
+        >-{{
+          (subtotal * discount / 100) | currency : 'USD' : 'symbol' : '1.0'
         }}</span
       >
     </div>
     <div class="row total">
       <strong>Total</strong>
-      <strong>${{ total$ | async | currency : 'USD' : 'symbol' : '1.0' }}</strong>
+      <strong>{{ total  | currency : 'USD' : 'symbol' : '1.0' }}</strong>
     </div>
   </div>
 

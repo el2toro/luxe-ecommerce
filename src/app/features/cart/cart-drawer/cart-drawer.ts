@@ -1,24 +1,24 @@
-import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, effect, inject } from '@angular/core';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { CartStore } from '../../../core/store/cart.store';
 import { Router, RouterLink } from "@angular/router";
+import { CartService } from '@core/services/cart.service';
 
 @Component({
   selector: 'app-cart-drawer',
-  imports: [AsyncPipe, CurrencyPipe, MatIconModule, FormsModule, CommonModule, RouterLink],
+  imports: [CurrencyPipe, MatIconModule, FormsModule, CommonModule, RouterLink],
   templateUrl: './cart-drawer.html',
   styleUrl: './cart-drawer.scss',
 })
-export class CartDrawer {
+export class CartDrawer implements OnInit {
   private router = inject(Router);
- cart = inject(CartStore);
-items$ = this.cart.items$;
-  totalItems$ = this.cart.totalItems$;
-  subtotal$ = this.cart.subtotal$;
-  discount$ = this.cart.discount$;
-  total$ = this.cart.total$;
+  cart = inject(CartService);
+  items: any;
+  totalItems: any
+  subtotal: any;
+  discount = 20;
+  total: any
 
   code = '';
 
@@ -29,9 +29,18 @@ items$ = this.cart.items$;
       // close logic here if needed
     });
 }
+  ngOnInit(): void {
+    this.cart.currentCart$.subscribe({
+      next: (cartModel) => {
+        this.subtotal = cartModel.subtotal
+        this.items = cartModel.cartItems;
+        this.total = cartModel.total;
+      }
+    })
+  }
 
 apply() {
-    this.cart.applyPromo(this.code.toUpperCase());
+    //this.cart.applyPromo(this.code.toUpperCase());
   }
 
   close() {
