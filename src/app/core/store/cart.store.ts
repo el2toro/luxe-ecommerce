@@ -1,21 +1,10 @@
-// src/app/core/store/cart.store.ts
 import { Injectable } from '@angular/core';
+import { CartItemModel } from '@models/cart-item.model';
 import { ComponentStore } from '@ngrx/component-store';
 
-export interface CartItem {
-  id: number;
-  name: string;
-  brand: string;
-  price: number;
-  oldPrice?: number;
-  image: string;
-  size: string;
-  color: string;
-  quantity: number;
-}
 
 interface CartState {
-  items: CartItem[];
+  items: CartItemModel[];
   promoCode: string;
 }
 
@@ -25,19 +14,19 @@ export class CartStore extends ComponentStore<CartState> {
     super({ items: [], promoCode: '' });
   }
 
-  readonly addItem = this.updater((state, item: CartItem) => ({
+  readonly addItem = this.updater((state, item: CartItemModel) => ({
     ...state,
     items: [...state.items, { ...item, quantity: 1 }]
   }));
 
-  readonly updateQuantity = this.updater((state, { id, quantity }: { id: number; quantity: number }) => ({
+  readonly updateQuantity = this.updater((state, { id, quantity }: { id: string; quantity: number }) => ({
     ...state,
-    items: state.items.map(i => i.id === id ? { ...i, quantity: Math.max(1, quantity) } : i)
+    items: state.items.map(i => i.productId === id ? { ...i, quantity: Math.max(1, quantity) } : i)
   }));
 
-  readonly removeItem = this.updater((state, id: number) => ({
+  readonly removeItem = this.updater((state, id: string) => ({
     ...state,
-    items: state.items.filter(i => i.id !== id)
+    items: state.items.filter(i => i.productId !== id)
   }));
 
   readonly applyPromo = this.updater((state, code: string) => ({ ...state, promoCode: code }));
