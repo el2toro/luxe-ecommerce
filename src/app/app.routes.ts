@@ -51,7 +51,7 @@ export const routes: Routes = [
   { path: 'account/addresses', component: AddressesPage },
   {
     path: 'admin',
-    canMatch: [() => inject(AuthStore).isElite()],
+    //canMatch: [() => inject(AuthStore).isElite()],
     component: AdminLayout,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
