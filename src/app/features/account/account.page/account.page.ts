@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BottomNavComponent } from "../../layout/bottom-nav/bottom-nav.component";
 import { HeaderComponent } from "../../layout/header/header.component";
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 })
 export class AccountPage {
 private authStore = inject(AuthStore);
-private router = inject(Router);
+private router = inject(Router)
+user = this.authStore.user();
+
   signOut(){
    this.authStore.logout();
    this.router.navigate(['/']);

@@ -47,13 +47,7 @@ export class SignupPage implements OnInit {
 
   signup() {
     // Mock success
-    this.auth.login('jwt-from-signup', {
-      id: '2',
-      name: this.form.value.name!,
-      email: this.form.value.email!,
-      isElite: false,
-      password: this.form.value.password!
-    });
+   // this.auth.signup();
     this.router.navigate(['/']);
   }
 }
