@@ -1,4 +1,4 @@
 <button class="mini-cart" (click)="openCart()">
       <mat-icon>shopping_bag</mat-icon>
-      <span class="badge" *ngIf="count$ | async as count">{{count}}</span>
+      <span class="badge" *ngIf="(count$ | async) as count">{{count}}</span>
     </button>
