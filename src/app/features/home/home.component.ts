@@ -3,12 +3,14 @@ import { HeaderComponent } from '../layout/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { CartStore } from '../../core/store/cart.store';
+import { FooterComponent } from "@features/layout/footer/footer.component";
+import { LiveStylistChatComponent } from "app/shared/components/live-stylist-chat/live-stylist-chat.component";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [HeaderComponent, MatIconModule, CommonModule],
+  imports: [HeaderComponent, MatIconModule, CommonModule, FooterComponent, LiveStylistChatComponent],
 })
 export class HomeComponent implements OnInit {
   private cart = inject(CartStore);

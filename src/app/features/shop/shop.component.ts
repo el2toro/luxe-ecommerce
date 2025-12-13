@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from "../layout/header/header.component";
 import { CartStore } from '../../core/store/cart.store';
+import { CartService } from '@core/services/cart.service';
 
 @Component({
   selector: 'app-shop',
@@ -13,6 +14,7 @@ import { CartStore } from '../../core/store/cart.store';
   imports: [MatIconModule, CommonModule, FormsModule, MatButtonModule, HeaderComponent]
 })
 export class ShopComponent implements OnInit {
+  private cartService = inject(CartService);
   private cartStore = inject(CartStore);
   gridView = true;
   sortBy = 'newest';
@@ -93,15 +95,12 @@ export class ShopComponent implements OnInit {
   addToCart(product: any) {
     //this.cartItems.push(product);
     // Add animation feedback
-    this.cartStore.addItem({id: 1,
-  name: 'new product',
-  brand: 'new brad',
-  price: 50,
-  oldPrice: 70,
-  image: '',
-  size: 'M',
-  color: 'red',
-  quantity: 1})
+
+  this.cartService.addItemToCart({
+    customerId: 'c9f1f7bd-7a2e-4581-96b0-e017069c895e', 
+    productId: '123E4567-E89B-12D3-A456-426614174005', 
+    quantity: 2, 
+    currency: 2})
   }
 
   toggleWishlist(product: any) {

@@ -1,177 +1,184 @@
 <app-header></app-header>
 
-    <main class="home">
-
-      <!-- Hero -->
-      <section class="hero">
-        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/c974c28e95-3cfda063c5211c2cb9be.png?w=800&q=80" alt="Elegance">
-        <div class="hero-content">
-          <h2>Ehereal</h2>
-          <h2>Elegance</h2>
-          <button class="cta">Explore Collection →</button>
-        </div>
-      </section>
-
-      <!-- For You -->
-      <section class="section">
-        <h3>For You</h3>
-        <div class="products-grid">
-          <div class="product-card" *ngFor="let p of forYou">
-            <img [src]="p.img" [alt]="'img'">
-            <button class="view-3d">View in 3D</button>
-            <button class="wishlist"><mat-icon>favorite_border</mat-icon></button>
-            <div class="sale" *ngIf="p.sale">20% OFF</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- AI Stylist -->
-      <section class="ai-stylist">
-        <div class="card">
-          <h4>AI Personal Stylist</h4>
-          <p>Get personalized recommendations</p>
-          <button>→</button>
-        </div>
-      </section>
-
-      <!-- Featured Brands -->
-      <section class="section">
-        <h3>Featured Brands</h3>
-        <div class="brands">
-          <div class="brand" *ngFor="let b of brands">{{b}}</div>
-        </div>
-      </section>
-
-      <!-- Membership -->
-      <section class="membership">
-        <h3>Join the Elite</h3>
-        <p>Exclusive access to limited collections and early releases</p>
-        <button class="gradient-btn">Become a Member</button>
-      </section>
-
-      <!-- Categories -->
-      <section class="section">
-        <h3>Shop by Category</h3>
-        <div class="categories-grid">
-          <div class="cat-card" *ngFor="let c of categories">
-            <img [src]="c.img" [alt]="c.name">
-            <div class="overlay">
-              <h4>{{c.name}}</h4>
-              <p>{{c.items}} items</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 1. LIVE AUCTION TEASER -->
-<section class="live-auction">
-  <div class="auction-header">
-    <h3>Live Auction • Ends in</h3>
-    <div class="timer">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</div>
-  </div>
-  <div class="auction-item">
-    <img src="https://www.artnews.com/wp-content/uploads/2025/07/GettyImages-2224533986.jpg?w=1000&h=683&crop=1" alt="Rare Patek">
-    <div class="info">
-      <h4>Patek Philippe Nautilus 5711/1A-014 Tiffany Blue</h4>
-      <p class="current">Current Bid: $2,840,000</p>
-      <button class="bid-now">Bid Now →</button>
+<main class="home">
+  <!-- Hero -->
+  <section class="hero">
+    <img
+      src="https://storage.googleapis.com/uxpilot-auth.appspot.com/c974c28e95-3cfda063c5211c2cb9be.png?w=800&q=80"
+      alt="Elegance"
+    />
+    <div class="hero-content">
+      <h2>Ehereal</h2>
+      <h2>Elegance</h2>
+      <button class="cta">Explore Collection →</button>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 2. CONCIERGE SERVICES -->
-<section class="concierge">
-  <h3>Private Concierge Services</h3>
-  <div class="services-grid">
-    <div class="service">
-      <mat-icon>flight</mat-icon>
-      <h4>Private Jet Booking</h4>
+  <!-- For You -->
+  <section class="section">
+    <h3>For You</h3>
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let p of forYou">
+        <img [src]="p.img" [alt]="'img'" />
+        <button class="view-3d">View in 3D</button>
+        <button class="wishlist"><mat-icon>favorite_border</mat-icon></button>
+        <div class="sale" *ngIf="p.sale">20% OFF</div>
+      </div>
     </div>
-    <div class="service">
-      <mat-icon>nightlife</mat-icon>
-      <h4>VIP Table Reservations</h4>
+  </section>
+
+  <!-- AI Stylist -->
+  <section class="ai-stylist">
+    <div class="card">
+      <h4>AI Personal Stylist</h4>
+      <p>Get personalized recommendations</p>
+      <button>→</button>
     </div>
-    <div class="service">
-      <mat-icon>card_membership</mat-icon>
-      <h4>Black Card Access</h4>
+  </section>
+
+  <!-- Featured Brands -->
+  <section class="section">
+    <h3>Featured Brands</h3>
+    <div class="brands">
+      <div class="brand" *ngFor="let b of brands">{{ b }}</div>
     </div>
-    <div class="service">
-      <mat-icon>security</mat-icon>
-      <h4>Personal Security</h4>
+  </section>
+
+  <!-- Membership -->
+  <section class="membership">
+    <h3>Join the Elite</h3>
+    <p>Exclusive access to limited collections and early releases</p>
+    <button class="gradient-btn">Become a Member</button>
+  </section>
+
+  <!-- Categories -->
+  <section class="section">
+    <h3>Shop by Category</h3>
+    <div class="categories-grid">
+      <div class="cat-card" *ngFor="let c of categories">
+        <img [src]="c.img" [alt]="c.name" />
+        <div class="overlay">
+          <h4>{{ c.name }}</h4>
+          <p>{{ c.items }} items</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 3. EDITORIAL / "THE JOURNAL" -->
-<section class="journal">
-  <h3>The LUXE Journal</h3>
-  <div class="articles">
-    <article>
-      <img src="https://images.unsplash.com/photo-1595777457583-4bacb7fa5e81?w=800&q=85">
-      <h4>Inside Monaco Yacht Show 2025</h4>
-      <p>The most exclusive reveals</p>
-    </article>
-    <article>
-      <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&q=85">
-      <h4>Patek Philippe’s Secret Workshop</h4>
-      <p>Where legends are born</p>
-    </article>
-    <article>
-      <img src="https://images.unsplash.com/photo-1548036328-c9fa89d12889?w=800&q=85">
-      <h4>The Return of Hermès Himalaya</h4>
-      <p>Only 3 pieces worldwide</p>
-    </article>
-  </div>
-</section>
+  <!-- 1. LIVE AUCTION TEASER -->
+  <section class="live-auction">
+    <div class="auction-header">
+      <h3>Live Auction • Ends in</h3>
+      <div class="timer">{{ days }}d {{ hours }}h {{ minutes }}m {{ seconds }}s</div>
+    </div>
+    <div class="auction-item">
+      <img
+        src="https://www.artnews.com/wp-content/uploads/2025/07/GettyImages-2224533986.jpg?w=1000&h=683&crop=1"
+        alt="Rare Patek"
+      />
+      <div class="info">
+        <h4>Patek Philippe Nautilus 5711/1A-014 Tiffany Blue</h4>
+        <p class="current">Current Bid: $2,840,000</p>
+        <button class="bid-now">Bid Now →</button>
+      </div>
+    </div>
+  </section>
 
-<!-- 4. VIP WAITLIST GATE (CONVERSION MONSTER) -->
-<section class="waitlist-gate">
-  <div class="gate-content">
-    <h2>LUXE Black Card</h2>
-    <p class="exclusive">Invitation Only • 28,471 waiting</p>
-    <form class="waitlist-form">
-      <input type="email" placeholder="Your private email" />
-      <button class="gradient-btn">Request Invitation</button>
-    </form>
-    <p class="discreet">Approved members only • No public access</p>
-  </div>
-</section>
+  <!-- 2. CONCIERGE SERVICES -->
+  <section class="concierge">
+    <h3>Private Concierge Services</h3>
+    <div class="services-grid">
+      <div class="service">
+        <mat-icon>flight</mat-icon>
+        <h4>Private Jet Booking</h4>
+      </div>
+      <div class="service">
+        <mat-icon>nightlife</mat-icon>
+        <h4>VIP Table Reservations</h4>
+      </div>
+      <div class="service">
+        <mat-icon>card_membership</mat-icon>
+        <h4>Black Card Access</h4>
+      </div>
+      <div class="service">
+        <mat-icon>security</mat-icon>
+        <h4>Personal Security</h4>
+      </div>
+    </div>
+  </section>
 
-<!-- 5. INSTAGRAM FEED (REAL-TIME) -->
-<section class="instagram">
-  <h3>As Seen On Instagram</h3>
-  <div class="insta-grid">
-    <div class="insta-post" *ngFor="let i of [1,2,3,4,5,6]"></div>
-  </div>
-</section>
+  <!-- 3. EDITORIAL / "THE JOURNAL" -->
+  <section class="journal">
+    <h3>The LUXE Journal</h3>
+    <div class="articles">
+      <article>
+        <img src="https://images.unsplash.com/photo-1595777457583-4bacb7fa5e81?w=800&q=85" />
+        <h4>Inside Monaco Yacht Show 2025</h4>
+        <p>The most exclusive reveals</p>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&q=85" />
+        <h4>Patek Philippe’s Secret Workshop</h4>
+        <p>Where legends are born</p>
+      </article>
+      <article>
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d12889?w=800&q=85" />
+        <h4>The Return of Hermès Himalaya</h4>
+        <p>Only 3 pieces worldwide</p>
+      </article>
+    </div>
+  </section>
 
-<!-- 6. TRUST BADGES / SOCIAL PROOF -->
-<section class="trust">
-  <div class="badge">Verified by Christie's</div>
-  <div class="badge">Sotheby's Partner</div>
-  <div class="badge">1M+ Satisfied Clients</div>
-  <div class="badge">256-bit Encryption</div>
-  <div class="badge">Discreet Packaging</div>
-</section>
+  <!-- 4. VIP WAITLIST GATE (CONVERSION MONSTER) -->
+  <section class="waitlist-gate">
+    <div class="gate-content">
+      <h2>LUXE Black Card</h2>
+      <p class="exclusive">Invitation Only • 28,471 waiting</p>
+      <form class="waitlist-form">
+        <input type="email" placeholder="Your private email" />
+        <button class="gradient-btn">Request Invitation</button>
+      </form>
+      <p class="discreet">Approved members only • No public access</p>
+    </div>
+  </section>
 
-<!-- 7. WORLDWIDE PRESENCE -->
-<section class="locations">
-  <h3>Our Private Boutiques</h3>
-  <div class="map-locations">
-    <div class="location">Dubai • UAE</div>
-    <div class="location">Monaco • Monte Carlo</div>
-    <div class="location">Geneva • Switzerland</div>
-    <div class="location">London • Mayfair</div>
-    <div class="location">New York • Madison Ave</div>
-    <div class="location">Tokyo • Ginza</div>
-  </div>
-</section>
+  <!-- 5. INSTAGRAM FEED (REAL-TIME) -->
+  <section class="instagram">
+    <h3>As Seen On Instagram</h3>
+    <div class="insta-grid">
+      <div class="insta-post" *ngFor="let i of [1, 2, 3, 4, 5, 6]"></div>
+    </div>
+  </section>
 
-<!-- 8. FINAL CTA — FULL BLEED -->
-<section class="final-cta">
-  <h2>Enter a World Reserved for Few</h2>
-  <button class="mega-cta">Begin Your Journey →</button>
-</section>
-    </main>
+  <!-- 6. TRUST BADGES / SOCIAL PROOF -->
+  <section class="trust">
+    <div class="badge">Verified by Christie's</div>
+    <div class="badge">Sotheby's Partner</div>
+    <div class="badge">1M+ Satisfied Clients</div>
+    <div class="badge">256-bit Encryption</div>
+    <div class="badge">Discreet Packaging</div>
+  </section>
 
-    <!-- <app-bottom-nav></app-bottom-nav> -->
+  <!-- 7. WORLDWIDE PRESENCE -->
+  <section class="locations">
+    <h3>Our Private Boutiques</h3>
+    <div class="map-locations">
+      <div class="location">Dubai • UAE</div>
+      <div class="location">Monaco • Monte Carlo</div>
+      <div class="location">Geneva • Switzerland</div>
+      <div class="location">London • Mayfair</div>
+      <div class="location">New York • Madison Ave</div>
+      <div class="location">Tokyo • Ginza</div>
+    </div>
+  </section>
+
+  <!-- 8. FINAL CTA — FULL BLEED -->
+  <section class="final-cta">
+    <h2>Enter a World Reserved for Few</h2>
+    <button class="mega-cta">Begin Your Journey →</button>
+  </section>
+</main>
+
+<app-live-stylist-chat></app-live-stylist-chat>
+
+<app-footer></app-footer>
