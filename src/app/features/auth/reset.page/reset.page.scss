@@ -1,0 +1,110 @@
+.reset-page {
+  background: #000;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.reset-container {
+  width: 100%;
+  max-width: 480px;
+  background: #111;
+  border-radius: 32px;
+  padding: 60px 40px;
+  text-align: center;
+  border: 1px solid rgba(157,78,221,0.3);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+}
+
+.logo h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  background: linear-gradient(90deg, #c77dff, #9d4edd);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0 0 40px;
+}
+
+h2 {
+  font-size: 36px;
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-bottom: 48px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-form-field-outline {
+  background: rgba(17,17,17,0.9);
+  color: #c77dff;
+}
+
+::ng-deep .mat-mdc-form-field-label {
+  color: #aaa !important;
+}
+
+::ng-deep .mat-mdc-input-element {
+  color: white !important;
+}
+
+.password-toggle {
+  text-align: left;
+  margin: 16px 0 32px;
+  color: #999;
+}
+
+.reset-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #9d4edd, #c77dff);
+  color: white;
+  padding: 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 20px;
+  box-shadow: 0 15px 40px rgba(157,78,221,0.5);
+}
+
+.success-message {
+  margin-top: 40px;
+  padding: 32px;
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.4);
+  border-radius: 24px;
+}
+
+.success-message mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #34d399;
+}
+
+.login-link {
+  display: block;
+  margin-top: 24px;
+  color: #c77dff;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.back-link a {
+  color: #c77dff;
+  text-decoration: none;
+  font-size: 16px;
+}

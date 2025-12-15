@@ -1,1 +1,68 @@
-<p>reset.page works!</p>
+<div class="reset-page">
+  <div class="reset-container">
+    <div class="logo">
+      <h1>LUXE</h1>
+    </div>
+
+    <h2>Reset Your Password</h2>
+    <p class="subtitle">Enter your new password below</p>
+
+    <form (ngSubmit)="resetPassword()" [formGroup]="resetForm">
+      <!-- New Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>New Password</mat-label>
+        <input matInput 
+               type="password" 
+               formControlName="password" 
+               required>
+        <mat-error *ngIf="resetForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="resetForm.get('password')?.hasError('minlength')">
+          Minimum 8 characters
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Confirm Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Confirm New Password</mat-label>
+        <input matInput 
+               type="password" 
+               formControlName="confirmPassword" 
+               required>
+        <mat-error *ngIf="resetForm.hasError('mismatch')">
+          Passwords do not match
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Show/Hide Password Toggle -->
+      <div class="password-toggle">
+        <mat-checkbox [(ngModel)]="showPassword" [ngModelOptions]="{standalone: true}">
+          Show password
+        </mat-checkbox>
+      </div>
+
+      <!-- Submit Button -->
+      <button mat-raised-button 
+              color="primary" 
+              type="submit" 
+              class="reset-btn"
+              [disabled]="resetForm.invalid || loading">
+        <span *ngIf="!loading">Reset Password</span>
+        <mat-spinner diameter="24" *ngIf="loading"></mat-spinner>
+      </button>
+    </form>
+
+    <!-- Success Message -->
+    <div class="success-message" *ngIf="success">
+      <mat-icon>check_circle</mat-icon>
+      <p>Your password has been reset successfully</p>
+      <a routerLink="/login" class="login-link">Return to Login</a>
+    </div>
+
+    <!-- Back to Login -->
+    <p class="back-link">
+      <a routerLink="/login">← Back to Login</a>
+    </p>
+  </div>
+</div>
