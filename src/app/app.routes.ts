@@ -29,12 +29,14 @@ import { ArTryonComponent } from './features/ar-tryon/ar-tryon.component';
 import { ShopComponent } from './features/shop/shop.component';
 import { CheckoutSuccessComponent } from './features/checkout/checkout-success/checkout-success.component';
 import { CheckoutFailedComponent } from './features/checkout/checkout-failed/checkout-failed.component';
+import { ResetPasswordPage } from '@features/auth/reset.page/reset.page';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupPage },
   { path: 'forgot', component: ForgotPage },
+  { path: 'reset-password', component: ResetPasswordPage },
   { path: 'shop', component: ShopComponent },
   { path: 'categories', component: CategoriesPage },
   { path: 'ar-tryon', component: ArTryonComponent },

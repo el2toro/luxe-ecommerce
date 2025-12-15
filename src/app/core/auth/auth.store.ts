@@ -52,6 +52,14 @@ export class AuthStore {
     return this.http.post<SignupResponseModel>(`${this.baseUrl}/signup`, request);
   }
 
+    confirmEmail(email: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/confirm-email`, {email: email});
+  }
+
+  resetPassword(email: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/reset-password`, {email: email});
+  }
+
   private hydrate() {
     const storedAccessToken = localStorage.getItem('accessToken');
     const storedUser = localStorage.getItem('user');
