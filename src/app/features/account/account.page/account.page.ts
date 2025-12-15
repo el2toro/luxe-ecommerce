@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+ import { Component, inject, OnInit } from '@angular/core';
 import { BottomNavComponent } from "../../layout/bottom-nav/bottom-nav.component";
 import { HeaderComponent } from "../../layout/header/header.component";
 import { MatIconModule } from '@angular/material/icon';

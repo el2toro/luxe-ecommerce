@@ -27,7 +27,6 @@ currentCartItems$ = this.cartItems.asObservable();
     .pipe(map((cart) => {
         this.cart.next(cart)
         this.cartItems.next(cart.cartItems.length)
-        console.log('minicart init: ', cart)
     })).subscribe()
   }
 }

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { AuthModel } from '@models/auth/auth-request.model';
 import { AuthResponseModel } from '@models/auth/auth-response.model';
+import { SignupRequestModel } from '@models/auth/signup-request.model';
+import { SignupResponseModel } from '@models/auth/signup-response.model';
 import { UserModel } from '@models/user/user.model';
 import { map, Observable } from 'rxjs';
 
@@ -44,6 +46,10 @@ export class AuthStore {
   logout() {
     localStorage.removeItem('accessToken');
     this.state.set({ user: null, token: null });
+  }
+
+  signup(request: SignupRequestModel): Observable<SignupResponseModel> {
+    return this.http.post<SignupResponseModel>(`${this.baseUrl}/signup`, request);
   }
 
   private hydrate() {
