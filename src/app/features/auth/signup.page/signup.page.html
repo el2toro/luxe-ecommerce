@@ -3,7 +3,7 @@
         <h1>Create Account</h1>
         <p class="subtitle">Join the LUXE elite</p>
 
-        <form [formGroup]="form" (ngSubmit)="signup()">
+        <form [formGroup]="form">
           <input type="text" formControlName="name" placeholder="Full Name">
           <input type="email" formControlName="email" placeholder="Email Address">
           
@@ -27,7 +27,7 @@
             </label>
           </div>
 
-          <button type="submit" class="signup-btn" [disabled]="!form.valid">
+          <button (click)="signup()" type="submit" class="signup-btn" [disabled]="!form.valid">
             Create Account
           </button>
 
