@@ -3,10 +3,10 @@
     <h1>Reset Password</h1>
     <p class="subtitle">Enter your email to receive a reset link</p>
 
-    <form [formGroup]="form" (ngSubmit)="sendReset()">
+    <form [formGroup]="form">
       <input type="email" formControlName="email" placeholder="Email Address" />
 
-      <button type="submit" class="reset-btn" [disabled]="!form.valid">Send Reset Link</button>
+      <button (click)="sendReset()" type="submit" class="reset-btn" [disabled]="!form.valid">Confirm Email</button>
     </form>
 
     <p class="back">

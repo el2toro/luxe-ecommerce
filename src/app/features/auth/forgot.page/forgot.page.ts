@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthStore } from '@core/auth/auth.store';
 
 @Component({
   selector: 'app-forgot.page',
@@ -10,13 +11,18 @@ import { RouterModule } from '@angular/router';
 })
 export class ForgotPage {
   private fb = inject(FormBuilder);
+  private authStore = inject(AuthStore);
+  private router = inject(Router);
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
   });
 
-  constructor() {}
-
   sendReset() {
-    alert(`Reset link sent to ${this.form.value.email}`);
+    this.authStore.resetPassword('email').subscribe({
+      next: (response) => {
+        console.log('email ok'); 
+        this.router.navigate(['reset-password']);
+      } 
+    })
   }
 }
