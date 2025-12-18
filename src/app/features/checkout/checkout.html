@@ -33,10 +33,10 @@
     </div>
     <div class="items">
       <div class="item" *ngFor="let i of cart.items$ | async">
-        <img [src]="i.image" />
+        <img [src]="'image.jpg'" />
         <div>
-          <p>{{ i.name }}</p>
-          <p>Size {{ i.size }} • {{ i.quantity }} × ${{ i.price }}</p>
+          <p>{{ 'product name' }}</p>
+          <p>Size {{ 'size' }} • {{ i.quantity }} × ${{ i.price }}</p>
         </div>
       </div>
     </div>
