@@ -61,6 +61,10 @@ input {
     opacity: 0.9;
   }
   }
+
+  span{
+    text-wrap: nowrap;
+  }
 }
 .options label {
   display: flex;
