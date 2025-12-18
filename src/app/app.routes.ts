@@ -2,7 +2,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './features/auth/login/login.component';
 import { SignupPage } from './features/auth/signup.page/signup.page';
-import { ForgotPage } from './features/auth/forgot.page/forgot.page';
+import { ForgotPage } from './features/auth/forgot-password/forgot-password.page';
 import { HomeComponent } from './features/home/home.component';
 import { Listing } from './features/products/listing/listing';
 import { Detail } from './features/products/detail/detail';
