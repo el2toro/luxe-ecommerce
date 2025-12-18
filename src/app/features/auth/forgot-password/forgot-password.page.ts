@@ -4,10 +4,10 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthStore } from '@core/auth/auth.store';
 
 @Component({
-  selector: 'app-forgot.page',
+  selector: 'app-forgot-password',
   imports: [ReactiveFormsModule, RouterModule],
-  templateUrl: './forgot.page.html',
-  styleUrl: './forgot.page.scss',
+  templateUrl: './forgot-password.page.html',
+  styleUrl: './forgot-password.page.scss',
 })
 export class ForgotPage {
   private fb = inject(FormBuilder);
