@@ -1,29 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-
-export interface Product {
-  id: string | null;
-  name: string;
-  description: string;
-  sku: string;
-  imageFile: string;
-  price: string;
-  rating: number;
-  isAvailable: boolean;
-  categories: any[];
-}
+import { Product } from '@models/catalog/product.model';
 
 @Injectable({ providedIn: 'root' })
-export class ProductService {
-  private baseUrl = 'https://localhost:7226/catalog';
+export class CatalogService {
+  private baseUrl = 'https://localhost:7070/catalog-service/catalog';
   private httpClient = inject(HttpClient);
   private products = new BehaviorSubject<Product[]>([]);
   currentProducts$ = this.products.asObservable();
 
-  getProducts() : Observable<any> {
-   return this.httpClient.get<any[]>(`${this.baseUrl}`)
-   .pipe(map((products) => this.products.next(products)));
+  getProducts() : void {
+    this.httpClient.get<Product[]>(`${this.baseUrl}`)
+   .pipe(map((products) => this.products.next(products)))
+   .subscribe();
   }
 
    getProductById(productId: string) : Observable<Product> {
