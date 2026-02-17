@@ -1,10 +1,10 @@
 <app-header></app-header>
 <section class="shop-page">
   <!-- HERO BANNER -->
-  <div class="shop-hero">
+  <!-- <div class="shop-hero">
     <h1>Exclusive Collection</h1>
     <p>Only 1,847 pieces available worldwide</p>
-  </div>
+  </div> -->
 
   <!-- FILTERS + GRID -->
   <div class="shop-container">
@@ -44,15 +44,15 @@
         </select>
       </div>
 
-      <button class="apply-filters" (click)="applyFilters()">Apply Filters</button>
-      <button class="clear-filters" (click)="clearFilters()">Clear All</button>
+      <button class="apply-filters">Apply Filters</button>
+      <button class="clear-filters">Clear All</button>
     </aside>
 
     <!-- MAIN CONTENT -->
     <div class="shop-main">
       <!-- TOP BAR -->
       <div class="shop-controls">
-        <div class="results-count">{{filteredProducts.length}} pieces available</div>
+        <div class="results-count">{{(products$ | async)?.length}} pieces available</div>
         
         <div class="controls-right">
           <button (click)="toggleView()" class="view-toggle">
@@ -69,25 +69,23 @@
 
       <!-- PRODUCTS GRID -->
       <div class="products-grid" [class.list-view]="!gridView">
-        <article class="product-card" *ngFor="let p of filteredProducts">
-          <div class="image-wrapper">
-            <img [src]="p.image" [alt]="p.name" loading="lazy">
-            <button class="wishlist-btn" (click)="toggleWishlist(p)">
-              <mat-icon>{{p.wishlisted ? 'favorite' : 'favorite_border'}}</mat-icon>
+        <article class="product-card" *ngFor="let product of products$ | async">
+          <div class="image-wrapper" (click)="viewProduct(product.id)">
+            <img [src]="product.image" [alt]="product.name" loading="lazy">
+            <button class="wishlist-btn" (click)="toggleWishlist(product)">
+              <mat-icon>{{product.rating}}</mat-icon>
             </button>
-            <div class="badge" *ngIf="p.rarity">{{p.rarity}}</div>
-            <div class="sold-out" *ngIf="p.sold">Sold</div>
+           
+            <div class="sold-out" *ngIf="product.quantity === 0">Sold</div>
           </div>
 
           <div class="product-info">
-            <h3>{{p.name}}</h3>
-            <p class="brand">{{p.brand}}</p>
-            <p class="price">${{p.price | number}}</p>
-            
-            <button class="add-to-cart" (click)="addToCart(p)" [disabled]="p.sold">
-              {{p.sold ? 'Sold Out' : 'Add to Cart'}}
-            </button>
+            <h3>{{product.name}}</h3>
+            <p class="price">${{product.price | number}}</p>
           </div>
+          <button class="add-to-cart" (click)="addToCart(product)" [disabled]="product.quantity === 0">
+              {{product.quantity === 0 ? 'Sold Out' : 'Add to Cart'}}
+            </button>
         </article>
       </div>
 
