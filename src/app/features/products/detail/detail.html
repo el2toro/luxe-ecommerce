@@ -9,8 +9,8 @@
 
       <div class="details">
         <h1>{{product.name}}</h1>
-        <p class="brand">{{product.brand}}</p>
-        <p class="price">${{product.price}} <span class="old">${{product.oldPrice}}</span> <span class="sale">20% OFF</span></p>
+        <p class="brand">{{'brand'}}</p>
+        <p class="price">${{product.price}} <span class="old">${{500}}</span> <span class="sale">20% OFF</span></p>
 
         <div class="sizes">
           <button *ngFor="let s of ['XS','S','M','L','XL']" [class.active]="size===s" (click)="size=s">{{s}}</button>
@@ -25,4 +25,3 @@
       </div>
     </main>
 
-    <app-bottom-nav></app-bottom-nav>

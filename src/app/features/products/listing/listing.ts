@@ -34,7 +34,7 @@ export class Listing implements OnInit {
   }
 
   ngOnInit(): void {
-    this.products.subscribe({next: (data) => console.log(data)})
+    //this.products.subscribe({next: (data) => console.log(data)})
   }
 
   filtersOpen = false;

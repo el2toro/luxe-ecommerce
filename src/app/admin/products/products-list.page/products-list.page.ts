@@ -2,16 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { Product, ProductService } from '../../../core/services/catalog.service';
-
-// interface Product {
-//   id: number;
-//   name: string;
-//   price: number;
-//   stock: number;
-//   status: 'published' | 'draft';
-//   images: string[];
-// }
+import {  CatalogService } from '../../../core/services/catalog.service';
 
 @Component({
   selector: 'app-products-list.page',
@@ -20,7 +11,7 @@ import { Product, ProductService } from '../../../core/services/catalog.service'
   styleUrl: './products-list.page.scss',
 })
 export class ProductsListPage implements OnInit {
- private productService = inject(ProductService);
+ private productService = inject(CatalogService);
 
  get products$(){
   return this.productService.currentProducts$;
@@ -30,7 +21,7 @@ export class ProductsListPage implements OnInit {
   }
 
   getProducts(){
-    this.productService.getProducts().subscribe();
+    this.productService.getProducts();
   }
 
   delete(productId: any) {

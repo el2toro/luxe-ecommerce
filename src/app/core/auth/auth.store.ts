@@ -14,7 +14,7 @@ export interface AuthState {
 
 @Injectable({ providedIn: 'root' })
 export class AuthStore {
-  private baseUrl = 'https://localhost:7020/auth';
+  private baseUrl = 'https://localhost:7070/auth-service/auth';
   private http = inject(HttpClient);
   private state = signal<AuthState>({
     user: null,

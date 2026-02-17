@@ -20,7 +20,7 @@
     <tbody>
       @for (product of products$ | async; track $index) {
       <tr>
-        <td><img [src]="product.imageFile" class="thumb" /></td>
+        <td><img [src]="product.image" class="thumb" /></td>
         <td>
           <strong>{{ product.name }}</strong>
         </td>

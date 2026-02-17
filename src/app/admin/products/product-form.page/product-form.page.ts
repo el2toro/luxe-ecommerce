@@ -3,7 +3,8 @@ import { Component, computed, effect, inject, OnInit, signal } from '@angular/co
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product, ProductService } from '../../../core/services/catalog.service';
+import { CatalogService } from '../../../core/services/catalog.service';
+import { Product } from '@models/catalog/product.model';
 
 interface Variant {
   size: string;
@@ -21,7 +22,7 @@ interface Variant {
 })
 
 export class ProductFormPage{
-  private productService = inject(ProductService);
+  private productService = inject(CatalogService);
 route = inject(ActivatedRoute);
   router = inject(Router);
   fb = inject(FormBuilder);
@@ -135,7 +136,7 @@ route = inject(ActivatedRoute);
     this.productService.getProductById(productId).subscribe({
       next: (product) => {
         this.product = product;
-        this.product.imageFile = 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        this.product.image = 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 
     this.form.patchValue({
       name: product.name,
@@ -154,15 +155,16 @@ route = inject(ActivatedRoute);
 
   mapFormToProduct() : Product{
    return {
-      id: null,
+      id: this.isEdit() ? this.product.id : '',
       name: this.form.get('name')?.value ?? '',
       description: this.form.get('description')?.value ?? '',
-      price: this.form.get('price')?.value?.toString() ?? '',
+      price:  Number(this.form.get('price')?.value) ?? 0,
       isAvailable: true,
-      imageFile: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       rating: this.form.get('rating')?.value ?? 5,
       sku: this.form.get('sku')?.value ?? '',   
-      categories: []
+      productCategories: [],
+      quantity: this.form.get('quantity')?.value ?? 0,createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(),
    }
   }
 }

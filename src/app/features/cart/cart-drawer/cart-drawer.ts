@@ -34,7 +34,7 @@ export class CartDrawer implements OnInit {
       next: (cartModel) => {
         this.subtotal = cartModel.subtotal
         this.items = cartModel.cartItems;
-        this.total = cartModel.total;
+        this.total = cartModel.total * this.discount / 100;
       }
     })
   }
