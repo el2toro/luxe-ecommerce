@@ -1,4 +1,3 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { LoginComponent } from './features/auth/login/login.component';
 import { SignupPage } from './features/auth/signup.page/signup.page';
@@ -13,8 +12,6 @@ import { AccountPage } from './features/account/account.page/account.page';
 import { OrdersPage } from './features/account/orders.page/orders.page';
 import { AddressesPage } from './features/account/addresses.page/addresses.page';
 import { CategoriesPage } from './features/categories/categories.page/categories.page';
-import { AuthStore } from './core/auth/auth.store';
-import { inject } from '@angular/core';
 import { AdminLayout } from './admin/admin-layout/admin-layout';
 import { DashboardPage } from './admin/dashboard/dashboard.page/dashboard.page';
 import { ProductsListPage } from './admin/products/products-list.page/products-list.page';
@@ -27,7 +24,6 @@ import { SettingsComponent } from './admin/settings/settings.component';
 import { VipLoungeComponent } from './admin/vip-lounge/vip-lounge.component';
 import { ArTryonComponent } from './features/ar-tryon/ar-tryon.component';
 import { ShopComponent } from './features/shop/shop.component';
-import { CheckoutSuccessComponent } from './features/checkout/checkout-success/checkout-success.component';
 import { CheckoutFailedComponent } from './features/checkout/checkout-failed/checkout-failed.component';
 import { ResetPasswordPage } from '@features/auth/reset.page/reset.page';
 
@@ -38,6 +34,7 @@ export const routes: Routes = [
   { path: 'forgot', component: ForgotPage },
   { path: 'reset-password', component: ResetPasswordPage },
   { path: 'shop', component: ShopComponent },
+  { path: 'products/:id', component: Detail },
   { path: 'categories', component: CategoriesPage },
   { path: 'ar-tryon', component: ArTryonComponent },
   { path: 'category/:slug', component: Listing },
@@ -60,7 +57,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardPage },
       { path: 'products', component: ProductsListPage },
       { path: 'products/new', component: ProductFormPage },
-      { path: 'products/:id', component: ProductFormPage },
+      { path: 'products/:id', component: Detail },
       { path: 'orders', component: OrdersListPage },
       { path: 'analytics', component: AnalyticsPage },
       { path: 'customers', component: CustomersPage },
@@ -71,14 +68,3 @@ export const routes: Routes = [
   },
   { path: '**', redirectTo: '' },
 ];
-
-// {
-//   path: 'account',
-//   canMatch: [authGuard],
-//   loadComponent: () => import('./features/account/account.page').then(m => m.AccountPage)
-// },
-// {
-//   path: 'checkout',
-//   canMatch: [authGuard],
-//   loadComponent: () => import('./features/checkout/checkout.page').then(m => m.CheckoutPage)
-// }
