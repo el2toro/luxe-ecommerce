@@ -28,28 +28,35 @@
   </section>
 
   <!-- AI Stylist -->
-  <section class="ai-stylist">
+  <!-- <section class="ai-stylist">
     <div class="card">
       <h4>AI Personal Stylist</h4>
       <p>Get personalized recommendations</p>
       <button>→</button>
     </div>
-  </section>
+  </section> -->
 
   <!-- Featured Brands -->
   <section class="section">
-    <h3>Featured Brands</h3>
-    <div class="brands">
+  <h3>Featured Brands</h3>
+  
+  <div class="brands-marquee">
+    <div class="track">
+      <!-- First set -->
+      <div class="brand" *ngFor="let b of brands">{{ b }}</div>
+      
+      <!-- Second identical set (required for seamless loop) -->
       <div class="brand" *ngFor="let b of brands">{{ b }}</div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Membership -->
-  <section class="membership">
+  <!-- <section class="membership">
     <h3>Join the Elite</h3>
     <p>Exclusive access to limited collections and early releases</p>
     <button class="gradient-btn">Become a Member</button>
-  </section>
+  </section> -->
 
   <!-- Categories -->
   <section class="section">
@@ -65,54 +72,12 @@
     </div>
   </section>
 
-  <!-- 1. LIVE AUCTION TEASER -->
-  <section class="live-auction">
-    <div class="auction-header">
-      <h3>Live Auction • Ends in</h3>
-      <div class="timer">{{ days }}d {{ hours }}h {{ minutes }}m {{ seconds }}s</div>
-    </div>
-    <div class="auction-item">
-      <img
-        src="https://www.artnews.com/wp-content/uploads/2025/07/GettyImages-2224533986.jpg?w=1000&h=683&crop=1"
-        alt="Rare Patek"
-      />
-      <div class="info">
-        <h4>Patek Philippe Nautilus 5711/1A-014 Tiffany Blue</h4>
-        <p class="current">Current Bid: $2,840,000</p>
-        <button class="bid-now">Bid Now →</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. CONCIERGE SERVICES -->
-  <section class="concierge">
-    <h3>Private Concierge Services</h3>
-    <div class="services-grid">
-      <div class="service">
-        <mat-icon>flight</mat-icon>
-        <h4>Private Jet Booking</h4>
-      </div>
-      <div class="service">
-        <mat-icon>nightlife</mat-icon>
-        <h4>VIP Table Reservations</h4>
-      </div>
-      <div class="service">
-        <mat-icon>card_membership</mat-icon>
-        <h4>Black Card Access</h4>
-      </div>
-      <div class="service">
-        <mat-icon>security</mat-icon>
-        <h4>Personal Security</h4>
-      </div>
-    </div>
-  </section>
-
   <!-- 3. EDITORIAL / "THE JOURNAL" -->
   <section class="journal">
     <h3>The LUXE Journal</h3>
     <div class="articles">
       <article>
-        <img src="https://images.unsplash.com/photo-1595777457583-4bacb7fa5e81?w=800&q=85" />
+        <img src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
         <h4>Inside Monaco Yacht Show 2025</h4>
         <p>The most exclusive reveals</p>
       </article>
@@ -122,14 +87,88 @@
         <p>Where legends are born</p>
       </article>
       <article>
-        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d12889?w=800&q=85" />
+        <img src="https://images.unsplash.com/photo-1526755393771-bf2e591f33a0?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
         <h4>The Return of Hermès Himalaya</h4>
         <p>Only 3 pieces worldwide</p>
       </article>
     </div>
   </section>
 
-  <!-- 4. VIP WAITLIST GATE (CONVERSION MONSTER) -->
+  <!-- 5. INSTAGRAM FEED (REAL-TIME) -->
+
+  <section class="instagram">
+  <h3>As Seen On Instagram</h3>
+  
+  <div class="insta-grid">
+    <!-- Video Post 1: Product unboxing feel -->
+    <div class="insta-post">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="https://videos.pexels.com/video-files/3195394/3195394-hd_1080_1920_30fps.mp4" type="video/mp4">
+      </video>
+      <div class="post-overlay">
+        <p class="username">@sarah_m_92</p>
+        <p class="caption">Just unboxed this – the quality is insane! 🔥</p>
+      </div>
+    </div>
+
+    <!-- Video Post 2: Lifestyle / wearing product -->
+    <div class="insta-post">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="https://videos.pexels.com/video-files/3192900/3192900-hd_1080_1920_30fps.mp4" type="video/mp4">
+      </video>
+      <div class="post-overlay">
+        <p class="username">@travelwithmia</p>
+        <p class="caption">Perfect for everyday vibes – so comfy</p>
+      </div>
+    </div>
+
+    <!-- Video Post 3: Quick product spin / showcase -->
+    <div class="insta-post">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="https://videos.pexels.com/video-files/3191489/3191489-hd_1080_1920_30fps.mp4" type="video/mp4">
+      </video>
+      <div class="post-overlay">
+        <p class="username">@glowupemma</p>
+        <p class="caption">This changed my routine – obsessed ✨</p>
+      </div>
+    </div>
+
+    <!-- Video Post 4: In-use / casual moment -->
+    <div class="insta-post">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="https://videos.pexels.com/video-files/3191488/3191488-hd_1080_1920_30fps.mp4" type="video/mp4">
+      </video>
+      <div class="post-overlay">
+        <p class="username">@jamesk_fits</p>
+        <p class="caption">Daily essential now – highly recommend</p>
+      </div>
+    </div>
+
+    <!-- Video Post 5: Close-up detail shot -->
+    <div class="insta-post">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="https://www.instagram.com/reel/DCygYRMzKVA/?utm_source=ig_web_copy_link">
+      </video>
+      <div class="post-overlay">
+        <p class="username">@shopaholic_xx</p>
+        <p class="caption">Details on point – worth every penny</p>
+      </div>
+    </div>
+
+    <!-- Video Post 6: Testimonial-style with product reveal -->
+    <div class="insta-post">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="https://videos.pexels.com/video-files/3192901/3192901-hd_1080_1920_30fps.mp4" type="video/mp4">
+      </video>
+      <div class="post-overlay">
+        <p class="username">@morningritualpro</p>
+        <p class="caption">★★★★★ Best buy this year</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- 4. VIP WAITLIST GATE (CONVERSION MONSTER) -->
   <section class="waitlist-gate">
     <div class="gate-content">
       <h2>LUXE Black Card</h2>
@@ -140,42 +179,6 @@
       </form>
       <p class="discreet">Approved members only • No public access</p>
     </div>
-  </section>
-
-  <!-- 5. INSTAGRAM FEED (REAL-TIME) -->
-  <section class="instagram">
-    <h3>As Seen On Instagram</h3>
-    <div class="insta-grid">
-      <div class="insta-post" *ngFor="let i of [1, 2, 3, 4, 5, 6]"></div>
-    </div>
-  </section>
-
-  <!-- 6. TRUST BADGES / SOCIAL PROOF -->
-  <section class="trust">
-    <div class="badge">Verified by Christie's</div>
-    <div class="badge">Sotheby's Partner</div>
-    <div class="badge">1M+ Satisfied Clients</div>
-    <div class="badge">256-bit Encryption</div>
-    <div class="badge">Discreet Packaging</div>
-  </section>
-
-  <!-- 7. WORLDWIDE PRESENCE -->
-  <section class="locations">
-    <h3>Our Private Boutiques</h3>
-    <div class="map-locations">
-      <div class="location">Dubai • UAE</div>
-      <div class="location">Monaco • Monte Carlo</div>
-      <div class="location">Geneva • Switzerland</div>
-      <div class="location">London • Mayfair</div>
-      <div class="location">New York • Madison Ave</div>
-      <div class="location">Tokyo • Ginza</div>
-    </div>
-  </section>
-
-  <!-- 8. FINAL CTA — FULL BLEED -->
-  <section class="final-cta">
-    <h2>Enter a World Reserved for Few</h2>
-    <button class="mega-cta">Begin Your Journey →</button>
   </section>
 </main>
 

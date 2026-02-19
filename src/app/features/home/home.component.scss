@@ -127,6 +127,93 @@ h3 {
   height: 4rem;
 }
 
+.section {
+  padding: 3rem 1rem;
+  overflow: hidden;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+/* ──────────────────────────────────────── */
+/*        Infinite marquee container        */
+/* ──────────────────────────────────────── */
+.brands-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* The moving track */
+.track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;           /* important */
+  animation: scroll-left 35s linear infinite;
+  padding: 1rem 0;
+  will-change: transform;
+}
+
+.brand {
+  flex-shrink: 0;
+  background: rgba(50, 50, 50, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.1rem 1.8rem;
+  text-align: center;
+  border-radius: 0.9rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  min-width: 140px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.25s ease;
+  color: #eee;
+}
+
+.brand:hover {
+  transform: scale(1.08) translateY(-4px);
+  background: rgba(70, 70, 80, 0.85);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+/* ─────────────── Animation ─────────────── */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─────────────── Optional: Pause on hover ─────────────── */
+.brands-marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/* 
+  Faster version (good for more logos)
+  animation: scroll-left 22s linear infinite;
+*/
+
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -320,23 +407,104 @@ article p {
 }
 
 /* ─────────────────────── INSTAGRAM FEED ─────────────────────── */
+// .instagram {
+//   padding: 80px 20px;
+//   background: #0a0a0a;
+// }
+// .instagram h3 { text-align: center; font-size: 36px; margin-bottom: 48px; }
+// .insta-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+//   gap: 12px;
+// }
+// .insta-post {
+//   aspect-ratio: 1;
+//   background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+//   border-radius: 20px;
+//   background-size: 300%;
+//   animation: gradient 8s ease infinite;
+// }
+
 .instagram {
-  padding: 80px 20px;
+  padding: 100px 20px;
   background: #0a0a0a;
 }
-.instagram h3 { text-align: center; font-size: 36px; margin-bottom: 48px; }
+
+.instagram h3 {
+  text-align: center;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin-bottom: 3.5rem;
+  font-weight: 700;
+}
+
 .insta-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
+
 .insta-post {
-  aspect-ratio: 1;
-  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-  border-radius: 20px;
-  background-size: 300%;
-  animation: gradient 8s ease infinite;
+  aspect-ratio: 1 / 1;
+  border-radius: 1.1rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+  transition: all 0.28s ease;
+  background: #111;
+
+  &:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           // fills square, crops nicely
+    object-position: center;
+    display: block;
+  }
 }
+
+.post-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 40%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.4rem 1.2rem;
+  color: white;
+  pointer-events: none;         // so overlay doesn't block video interaction if needed
+
+  .username {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+    opacity: 0.95;
+  }
+
+  .caption {
+    font-size: 0.92rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .insta-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  
+  .insta-post {
+    border-radius: 0.9rem;
+  }
+}
+
 
 /* ─────────────────────── TRUST BADGES ─────────────────────── */
 .trust {
