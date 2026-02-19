@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from "@angular/material/icon";
 import { CartService } from '@core/services/cart.service';
+import { CartStore } from '@core/store/cart.store';
 
 @Component({
   selector: 'app-mini-cart',
@@ -10,11 +11,17 @@ import { CartService } from '@core/services/cart.service';
   styleUrl: './mini-cart.scss',
 })
 export class MiniCart implements OnInit {
-  private cart = inject(CartService);
-  count$ = this.cart.currentCartItems$;
+  cart = inject(CartService);
+  private cartStore = inject(CartStore);
 
   ngOnInit(): void {
-    this.cart.getCart('c9f1f7bd-7a2e-4581-96b0-e017069c895e');
+    this.cart.getCart();
+
+    // this.cart.currentCart$.subscribe(cart => {
+    //   cart.cartItems.map(item => {
+    //     this.cartStore.addItem(item);
+    //   });
+    // });
   }
 
   openCart() {
