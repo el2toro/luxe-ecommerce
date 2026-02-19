@@ -2,29 +2,32 @@
 
 <aside class="drawer">
   <div class="header">
-    <h2>Your Cart ({{ totalItems }})</h2>
+    <h2>Your Cart ({{ (currentItems$ | async)?.length || 0 }})</h2>
     <button (click)="close()"><mat-icon>close</mat-icon></button>
   </div>
 
   <div class="items">
-    <div class="item" *ngFor="let item of items ">
+    <div class="item" *ngFor="let item of currentItems$ | async">
+      
+     <div class="image">
       <img [src]="item.image" [alt]="item.name" />
       <div class="info">
-        <p class="brand">{{ item.brand }}</p>
+       
         <h4>{{ item.name }}</h4>
-        <p class="details">Size {{ item.size }} • {{ item.color }}</p>
-        <p class="price">${{ item.price * item.quantity }}</p>
+        <p class="details">Size {{ 'item.size' }} • {{ 'item.color' }}</p>
+        <p class="price">${{ item.price }}</p>
       </div>
+     </div>
 
       <div class="actions">
-        <button >
+        <button (click)="removeItem(item)">
           -
         </button>
         <span>{{ item.quantity }}</span>
-        <button >
+        <button (click)="addItem(item)">
           +
         </button>
-        <button class="remove">
+        <button class="remove" (click)="removeItemFromCart(item)">
           <mat-icon>delete_outline</mat-icon>
         </button>
       </div>
@@ -32,7 +35,7 @@
   </div>
 
   <div class="promo">
-    <input type="text" placeholder="Promo code" [(ngModel)]="code" />
+    <input type="text" placeholder="Promo code" [(ngModel)]="promoCode" />
     <button class="apply-button" (click)="apply()">Apply</button>
   </div>
 
@@ -41,11 +44,11 @@
       <span>Subtotal</span>
       <span>{{ subtotal | currency : 'USD' : 'symbol' : '1.0' }}</span>
     </div>
-    <div class="row discount" *ngIf="(discount ?? 0) > 0">
-      <span>Discount (25%)</span>
+    <div class="row discount" *ngIf="(subtotal - total) > 0">
+      <span>Discount</span>
       <span
         >-{{
-          (subtotal * discount / 100) | currency : 'USD' : 'symbol' : '1.0'
+          (subtotal -total) | currency : 'USD' : 'symbol' : '1.0'
         }}</span
       >
     </div>
@@ -55,6 +58,6 @@
     </div>
   </div>
 
-  <button class="checkout" routerLink="/checkout" (click)="proceedToCheckout()">Proceed to Checkout</button>
+  <button class="checkout" (click)="proceedToCheckout()">Proceed to Checkout</button>
   <button class="continue" (click)="continueShooping()">Continue Shopping</button>
 </aside>

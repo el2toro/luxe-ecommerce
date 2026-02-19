@@ -3,6 +3,7 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.8);
   z-index: 999;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .drawer {
   position: fixed;
@@ -22,6 +23,21 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  button{
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 0.3rem;
+    border: none;
+    color: white;
+    display: grid;
+    place-items: center;
+
+    &:hover{
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
 }
 .items {
   flex: 1;
@@ -30,7 +46,8 @@
 }
 .item {
   display: flex;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 20px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -40,6 +57,12 @@
   object-fit: cover;
   border-radius: 16px;
 }
+
+.image{
+  display: flex;
+  gap: 1rem;
+}
+
 .info h4 {
   margin: 4px 0;
   font-size: 16px;
@@ -68,9 +91,19 @@
   color: white;
   display: grid;
   place-items: center;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.9;
+  }
 }
 .remove {
   background: #ff3b30 !important;
+
+  &:hover{
+    cursor: pointer;
+    opacity: 0.9;
+  }
 }
 
 .promo {
@@ -126,7 +159,7 @@
   border: none;
   color: white;
   padding: 18px;
-  border-radius: 50px;
+  border-radius: 1rem;
   font-size: 18px;
   font-weight: 600;
 
@@ -141,7 +174,7 @@
   border: 1px solid #444;
   color: white;
   padding: 18px;
-  border-radius: 50px;
+  border-radius: 1rem;
 
    &:hover{
     cursor: pointer;
