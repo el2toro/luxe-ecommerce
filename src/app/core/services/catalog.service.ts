@@ -16,6 +16,10 @@ export class CatalogService {
    .subscribe();
   }
 
+   getProductsById(productIds: string[]) : Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseUrl}/products`, { params: { productIds: productIds } });
+  }
+
    getProductById(productId: string) : Observable<Product> {
      return this.httpClient.get<Product>(`${this.baseUrl}/products/${productId}`);
   }
