@@ -24,8 +24,6 @@ export class OrderSuccess implements OnInit {
   private orderingService = inject(OrderingService);
   order$ = this.orderingService.currentOrderDetails$;
 
-  constructor() {}
-
   ngOnInit(): void {
     const orderId = this.route.snapshot.queryParamMap.get('orderId') ?? '';
     this.orderingService.getOrderById(orderId);

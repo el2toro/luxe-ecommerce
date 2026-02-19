@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { HeaderComponent } from '../layout/header/header.component';
 import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { CheckoutStore } from '../../core/store/checkout.store';
 import { CartStore } from '../../core/store/cart.store';
@@ -11,9 +10,7 @@ import { Payment } from './steps/payment/payment';
 @Component({
   selector: 'app-checkout',
   imports: [
-    HeaderComponent,
     AsyncPipe,
-    CurrencyPipe,
     MatIconModule,
     CommonModule,
     Shipping,
@@ -28,6 +25,4 @@ export class Checkout {
   public cart = inject(CartStore);
   vm$ = this.checkout.vm$;
   showSummary = false;
-
-  constructor() {}
 }

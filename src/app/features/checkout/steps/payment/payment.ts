@@ -37,8 +37,8 @@ export class Payment implements AfterViewInit, OnDestroy {
     
      this.checkout.vm$.subscribe({
       next: (checkoutState) => {
-        this.orderId = checkoutState.orderId;
-        this.createPaymentIntent(checkoutState.customerId, checkoutState.orderId)
+        this.orderId = '81e7f729-f4d0-4e49-be99-c72376423abb' //checkoutState.orderId;
+        this.createPaymentIntent('c4a9d8e3-21f7-4b6a-8d0e-5f9a3c7b2e61', this.orderId)
       },
     });
   }
@@ -71,7 +71,7 @@ export class Payment implements AfterViewInit, OnDestroy {
     this.stripe!.confirmPayment({
       elements: this.elements,
       confirmParams: {
-        return_url: `https://localhost:4200/checkout/success?orderId=${this.orderId}`,
+        return_url: `http://localhost:4200/checkout/success?orderId=${this.orderId}`,
       },
     });
 

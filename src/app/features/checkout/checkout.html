@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
 <main class="checkout">
   <div class="progress">
@@ -22,11 +22,11 @@
   </div>
 
   <!-- Floating Order Summary (mobile) -->
-  <button class="summary-toggle" (click)="showSummary = !showSummary">
+  <!-- <button class="summary-toggle" (click)="showSummary = !showSummary">
     Show Order Summary ${{ (cart.total$ | async) || 0 | currency : 'USD' : 'symbol' : '1.0' }}
-  </button>
+  </button> -->
 
-  <div class="summary-drawer" [class.open]="showSummary">
+  <!-- <div class="summary-drawer" [class.open]="showSummary">
     <div class="header">
       <h3>Order Summary</h3>
       <button (click)="showSummary = false"><mat-icon>close</mat-icon></button>
@@ -44,5 +44,5 @@
       <span>Total</span>
       <strong>${{ (cart.total$ | async) || 0 | currency : 'USD' : 'symbol' : '1.0' }}</strong>
     </div>
-  </div>
+  </div> -->
 </main>
