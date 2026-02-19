@@ -5,6 +5,11 @@ import { CreateOrderRequestModel } from '@models/requests/create-order-request.m
 import { OrderItem } from '@models/order-item.model';
 import { OrderingService } from '@core/services/ordering.service';
 import { AddressModel } from '@models/address.model';
+import { CartService } from '@core/services/cart.service';
+import { CartModel } from '@models/cart.model';
+import { Product } from '@models/catalog/product.model';
+import { CatalogService } from '@core/services/catalog.service';
+import { CartItemModel } from '@models/cart-item.model';
 
 @Component({
   selector: 'app-shipping',
@@ -12,15 +17,25 @@ import { AddressModel } from '@models/address.model';
   templateUrl: './shipping.html',
   styleUrl: './shipping.scss',
 })
+
 export class Shipping implements OnInit{
   private formBuilder = inject(FormBuilder);
   private orderingService = inject(OrderingService);
+  private cartService = inject(CartService);
+  private currentCart!: CartModel;
+  private currentCartProducts = < Product[]>[];
+  private catalogService = inject(CatalogService);
   form!: FormGroup;
   checkout = inject(CheckoutStore);
   canNext = false;
   shipping: any; 
 
   ngOnInit(): void {
+    this.cartService.currentCart$.subscribe(cart => {
+      this.currentCart = cart;
+      this.getProductsById(cart.cartItems);
+    });
+  
     this.buildForm();
   }
 
@@ -54,7 +69,7 @@ export class Shipping implements OnInit{
       shippingAddress: this.mapAddress(),
       billingAddress: this.mapAddress(),
       currency: 'eur',
-      customerId: 'c56a4180-65aa-42ec-a945-5fd21dec0538',
+      customerId: this.currentCart.customerId,
       customerNotes: 'Please deliver between 09:00 AM - 03:00 PM',
       orderItems: this.getOrderItems()
     };
@@ -73,25 +88,34 @@ export class Shipping implements OnInit{
   }
 
   getOrderItems() : OrderItem[]{
-    return [
-      {
-      "productId": "f1a2d3b4-c567-4a7b-8b9a-2d3f8e5c7f2d",
-      "productName": "new product 2",
-      "productImageUrl": "product1.jpg",
-      "productSku": "UFG56",
-      "unitPrice": 59.99,
-      "quantity": 1,
-      "discount": 10.0
-    },
-    {
-      "productId": "e8b5c97b-ef7d-4f13-9e9e-5c3bfb8c6c2f",
-      "productName": "new product",
-      "productImageUrl": "product2.jpg",
-      "productSku": "UFG56",
-      "unitPrice": 89.99,
-      "quantity": 2,
-      "discount": 5.0
-    }
-    ]
+    return this.currentCartProducts.map(product => {
+      return {
+        productId: product.id,
+        productName: product.name,
+        productImageUrl: product.image,
+        productSku: product.sku,
+        unitPrice: product?.price || 0,
+        quantity: product?.quantity || 0,
+        discount: 0
+      };
+    });
   }
+
+  //TODO: Move this logic to cart store or service (it is duplicated in cart drawer)
+   getProductsById(cartItems: CartItemModel[]) {
+      const productIds = cartItems.map((item: any) => item.productId) as string[];
+      this.catalogService.getProductsById(productIds).subscribe({
+        next: (products) => {
+  
+          products.map(product => {
+            const cartItem = cartItems.find(item => item.productId === product.id);
+            if (cartItem) {
+              product.quantity = cartItem.quantity;
+            }
+          });
+  
+          this.currentCartProducts = products
+        }
+      });
+    }
 }
