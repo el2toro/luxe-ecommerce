@@ -38,14 +38,6 @@ export class CheckoutStore extends ComponentStore<CheckoutState> {
   readonly setShipping = this.updater((state, shipping: Partial<CheckoutState['shipping']>) => ({
     ...state, shipping: { ...state.shipping, ...shipping }
   }));
-  readonly setPaymentMethod = this.updater((state, method: 'card' | 'apple' | 'google') => ({
-    ...state, payment: { ...state.payment, method }
-  }));
-  readonly setCardComplete = this.updater((state, complete: boolean) => ({
-    ...state, payment: { ...state.payment, cardComplete: complete }
-  }));
-  readonly applyPromo = this.updater((state, code: string) => ({ ...state, promo: code }));
-
   readonly setCreatedOrderId = this.updater((state, orderId: string) => ({ ...state, orderId: orderId }));
   readonly setCustomerId = this.updater((state, customerId: string) => ({ ...state, customerId: customerId }));
 
