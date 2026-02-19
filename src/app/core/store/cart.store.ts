@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
 import { CartItemModel } from '@models/cart-item.model';
+import { Product } from '@models/catalog/product.model';
 import { ComponentStore } from '@ngrx/component-store';
 
 
 interface CartState {
   items: CartItemModel[];
+  products: Product[];
   promoCode: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class CartStore extends ComponentStore<CartState> {
   constructor() {
-    super({ items: [], promoCode: '' });
+    super({ items: [], products: [], promoCode: '' });
   }
 
   readonly addItem = this.updater((state, item: CartItemModel) => ({
     ...state,
     items: [...state.items, { ...item, quantity: 1 }]
+  }));
+
+   readonly addProduct = this.updater((state, product: Product) => ({
+    ...state,
+    products: [...state.products, { ...product }]
   }));
 
   readonly updateQuantity = this.updater((state, { id, quantity }: { id: string; quantity: number }) => ({
@@ -33,6 +40,7 @@ export class CartStore extends ComponentStore<CartState> {
 
   // Selectors
   readonly items$ = this.select(state => state.items);
+  readonly products$ = this.select(state => state.products);
   readonly totalItems$ = this.select(state => state.items.reduce((sum, i) => sum + i.quantity, 0));
   readonly subtotal$ = this.select(state => state.items.reduce((sum, i) => sum + i.price * i.quantity, 0));
   readonly discount$ = this.select(state => state.promoCode === 'LUXE25' ? 0.25 : 0);
