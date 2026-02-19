@@ -20,29 +20,4 @@
     <app-review></app-review>
     } }
   </div>
-
-  <!-- Floating Order Summary (mobile) -->
-  <!-- <button class="summary-toggle" (click)="showSummary = !showSummary">
-    Show Order Summary ${{ (cart.total$ | async) || 0 | currency : 'USD' : 'symbol' : '1.0' }}
-  </button> -->
-
-  <!-- <div class="summary-drawer" [class.open]="showSummary">
-    <div class="header">
-      <h3>Order Summary</h3>
-      <button (click)="showSummary = false"><mat-icon>close</mat-icon></button>
-    </div>
-    <div class="items">
-      <div class="item" *ngFor="let i of cart.items$ | async">
-        <img [src]="'image.jpg'" />
-        <div>
-          <p>{{ 'product name' }}</p>
-          <p>Size {{ 'size' }} • {{ i.quantity }} × ${{ i.price }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="total">
-      <span>Total</span>
-      <strong>${{ (cart.total$ | async) || 0 | currency : 'USD' : 'symbol' : '1.0' }}</strong>
-    </div>
-  </div> -->
 </main>
