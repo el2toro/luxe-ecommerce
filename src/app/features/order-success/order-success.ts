@@ -1,5 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import { HeaderComponent } from '../layout/header/header.component';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { AsyncPipe, CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
@@ -12,13 +11,13 @@ import { OrderingService } from '../../core/services/ordering.service';
     DatePipe,
     CurrencyPipe,
     RouterModule,
-    HeaderComponent,
     MatIconModule,
     CommonModule,
   ],
   templateUrl: './order-success.html',
   styleUrl: './order-success.scss',
 })
+
 export class OrderSuccess implements OnInit {
   private route = inject(ActivatedRoute);
   private orderingService = inject(OrderingService);
@@ -26,6 +25,11 @@ export class OrderSuccess implements OnInit {
 
   ngOnInit(): void {
     const orderId = this.route.snapshot.queryParamMap.get('orderId') ?? '';
-    this.orderingService.getOrderById(orderId);
+    
+    this.confirmOrder(orderId);
+  }
+
+  confirmOrder(orderId: string) {
+    this.orderingService.confirmOrder(orderId);
   }
 }
