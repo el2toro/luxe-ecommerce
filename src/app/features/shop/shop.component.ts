@@ -9,6 +9,7 @@ import { CartService } from '@core/services/cart.service';
 import { CatalogService } from '@core/services/catalog.service';
 import { Router } from '@angular/router';
 import { Product } from '@models/catalog/product.model';
+import { CartModel } from '@models/cart.model';
 
 @Component({
   selector: 'app-shop',
@@ -21,6 +22,7 @@ export class ShopComponent implements OnInit {
   private cartStore = inject(CartStore);
   private catalogService = inject(CatalogService);
   private router = inject(Router);
+  private currentCart!: CartModel;
   gridView = true;
   sortBy = 'newest';
   products$ = this.catalogService.currentProducts$;
@@ -34,12 +36,12 @@ export class ShopComponent implements OnInit {
     maxPrice: 1000000
   };
 
-  cartItems: any[] = [];
   wishlist: number[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.cartService.currentCart$.subscribe(cart => this.currentCart = cart);
     this.catalogService.getProducts();
   }
 
@@ -52,15 +54,16 @@ export class ShopComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartItems.push(product);
+    //this.cartItems.push(product);
     // Add animation feedback
 
+
+
   this.cartService.addItemToCart({
-    customerId: 'c9f1f7bd-7a2e-4581-96b0-e017069c895e', 
+    cartId: this.currentCart.id,
+    customerId: this.currentCart.customerId, 
     productId: product.id, 
-    quantity: 1, 
-    price: product.price,
-    currency: 2})
+    quantity: 1})
   }
 
   toggleWishlist(product: any) {

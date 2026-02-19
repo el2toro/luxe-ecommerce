@@ -9,15 +9,12 @@ import { CartItemModel } from '@models/cart-item.model';
 import { CartModel } from '@models/cart.model';
 import { Product } from '@models/catalog/product.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CheckoutStore } from '@core/store/checkout.store';
 
 interface CartItemUpdateRequest {
   productId: string;
   quantity: number;
   customerId: string;
   cartId: string;
-  price: number;
-  currency: number;
 }
 
 @Component({
@@ -31,9 +28,8 @@ export class CartDrawer implements OnInit {
   private router = inject(Router);
   private catalogService = inject(CatalogService);
   private cart = inject(CartService);
-  private checkoutStore = inject(CheckoutStore);
-  private items = new BehaviorSubject<Product[]>([]);
   private currentCart!: CartModel;
+  private items = new BehaviorSubject<Product[]>([]);
   currentItems$ = this.items.asObservable();
 
   subtotal: any;
@@ -49,6 +45,7 @@ export class CartDrawer implements OnInit {
     });
 }
   ngOnInit(): void {
+    console.log('CartDrawer initialized');
     this.initCart();
     this.cart.currentCart$.subscribe({
       next: (cart) => {
@@ -68,7 +65,6 @@ export class CartDrawer implements OnInit {
     })
   }
 
-
   getProductsById(cartItems: CartItemModel[]) {
     const productIds = cartItems.map((item: any) => item.productId) as string[];
     this.catalogService.getProductsById(productIds).subscribe({
@@ -81,7 +77,7 @@ export class CartDrawer implements OnInit {
           }
         });
 
-        this.items.next(products)
+        this.items.next(products);
       }
     });
   }
@@ -98,33 +94,29 @@ apply() {
   }
 
   proceedToCheckout(){
-    this.checkoutStore.setCustomerId(this.currentCart.customerId);
-    
      this.close();
      this.router.navigate(['/checkout']);
   }
 
-  addItem(item: any) {
+  addItem(item: Product) {
      const cartRequest: CartItemUpdateRequest = {
       productId: item.id,
       quantity: 1,
       customerId: this.currentCart.customerId,
-      cartId: this.currentCart.id,
-      price: item.price,
-      currency: 2
+      cartId: this.currentCart.id
     };
+
     this.cart.addItemToCart(cartRequest);
   }
 
-  removeItem(item: any) {
+  removeItem(item: Product) {
     const cartRequest: CartItemUpdateRequest = {
       productId: item.id,
       quantity: 1,
       customerId: this.currentCart.customerId,
-      cartId: this.currentCart.id,
-      price: item.price,
-      currency: 2
+      cartId: this.currentCart.id
     };
+ 
     this.cart.removeFromCart(cartRequest);
   }
 
@@ -133,9 +125,7 @@ apply() {
       productId: item.id,
       quantity: item.quantity,
       customerId: this.currentCart.customerId,
-      cartId: this.currentCart.id,
-      price: item.price,
-      currency: 2
+      cartId: this.currentCart.id
     };
     this.cart.removeFromCart(cartRequest);
   }
