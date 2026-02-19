@@ -13,12 +13,24 @@ export class OrderingService {
   currentOrderDetails$ = this.orderDetails.asObservable();
 
   placeOrder(createOrderRequest: CreateOrderRequestModel) {
-   return this.httpClient.post<OrderDetailsModel>(this.baseUrl, createOrderRequest);
+   return this.httpClient.post<OrderDetailsModel>(this.baseUrl, createOrderRequest)
+   .pipe(map(orderDetails => {
+      this.orderDetails.next(orderDetails);
+      return orderDetails;
+    }));
   }
 
-  getOrderById(orderId: string){
-    this.httpClient.get<OrderDetailsModel>(`${this.baseUrl}/${orderId}`)
-   .pipe(map(orderDetailsModel => this.orderDetails.next(orderDetailsModel)))
-   .subscribe();
+  getOrderById(orderId: string) : Observable<OrderDetailsModel> {
+   return this.httpClient.get<OrderDetailsModel>(`${this.baseUrl}/${orderId}`)
+   .pipe(map(orderDetailsModel => {
+      this.orderDetails.next(orderDetailsModel);
+      return orderDetailsModel;
+    }));
+  }
+
+  confirmOrder(orderId: string) {
+    return this.httpClient.post<OrderDetailsModel>(`${this.baseUrl}/${orderId}/confirm`, {orderId: orderId})
+    .pipe(map(orderDetailsModel => this.orderDetails.next(orderDetailsModel)))
+    .subscribe();
   }
 }
