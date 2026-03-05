@@ -1,14 +1,10 @@
 import {
   AfterViewInit,
   Component,
-  EventEmitter,
   inject,
-  Input,
   OnDestroy,
-  OnInit,
-  Output,
+  OnInit
 } from '@angular/core';
-import { CheckoutStore } from '@core/store/checkout.store';
 import { Stripe } from '@stripe/stripe-js';
 import { MatIconModule } from '@angular/material/icon';
 import { StripeService } from '@core/services/stripe.service';
@@ -25,11 +21,8 @@ import { OrderDetailsModel } from '@models/order-details.model';
   styleUrl: './payment.scss',
 })
 export class Payment implements OnInit,  AfterViewInit, OnDestroy {
-  @Output() next = new EventEmitter();
-  @Output() back = new EventEmitter();
   private paymentService = inject(PaymentService);
   private stripeService = inject(StripeService);
-  public checkout = inject(CheckoutStore);
   private orderingService = inject(OrderingService);
   currentOrderDetails!: OrderDetailsModel;
   private elements: any;
@@ -63,8 +56,6 @@ export class Payment implements OnInit,  AfterViewInit, OnDestroy {
       orderId: this.currentOrderDetails.id
     };
 
-    console.log('Creating Payment Intent with:', paymentIntent);
-
     this.paymentService.createPaymentIntent(paymentIntent).subscribe({
       next: (paymentIntent) => this.configurePayment(paymentIntent.clientSecret),
     });
@@ -72,7 +63,6 @@ export class Payment implements OnInit,  AfterViewInit, OnDestroy {
 
    configurePayment(clientSecret: string) {
     this.elements = this.stripe!.elements({ clientSecret });
-
     this.paymentElement = this.elements.create('payment');
     this.paymentElement.mount('#payment-element');
   }

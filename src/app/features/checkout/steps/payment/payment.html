@@ -7,7 +7,7 @@
       </div>
 
       <div class="actions">
-        <button class="back-btn" (click)="back.emit()">← Back</button>
+        <button class="back-btn">← Back</button>
         <button class="pay-btn" (click)="pay()">Pay {{ currentOrderDetails?.totalAmount | currency: currentOrderDetails?.currency }}</button>
       </div>
     </div>
