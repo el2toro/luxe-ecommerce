@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  afterNextRender,
   AfterViewInit,
   Component,
   effect,
@@ -13,6 +12,8 @@ import {
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CustomerChatService } from '@core/services/customer-chat.service';
+import { ChatSignalRService } from '@core/services/signalr.service';
 
 interface Message {
   text: string;
@@ -28,6 +29,10 @@ interface Message {
 })
 export class LiveStylistChatComponent implements AfterViewInit, OnInit {
   @ViewChild('messagesContainer') messagesContainer!: ElementRef<HTMLDivElement>;
+    private chatSignalRService = inject(ChatSignalRService);
+    private customerChatService = inject(CustomerChatService);
+    private conversationId = '';
+
   private formBuilder = inject(FormBuilder);
   form!: FormGroup;
 
@@ -57,6 +62,7 @@ export class LiveStylistChatComponent implements AfterViewInit, OnInit {
     });
   }
   ngOnInit(): void {
+    this.chatSignalRService.initConnection('your-auth-token'); // Replace with actual token retrieval
     this.buildForm();
   }
 
@@ -84,47 +90,49 @@ export class LiveStylistChatComponent implements AfterViewInit, OnInit {
     if (text) this.msg = text;
     if (!this.msg.trim()) return;
 
-    // Add user message
+    const id = '3FA85F64-5717-4562-B3FC-2C963F66AFA6';   
+    this.chatSignalRService.joinConversation(id); // Join the conversation before sending messages
+    
+    const newMessage = {customerId: id, subject: 'Order', initialMessage: this.msg};
+    const payload = { senderId: id, content: this.msg };
+
+    !this.conversationId 
+      ? this.startConversation(newMessage)
+      : this.sendMessage(payload);
+  }
+
+  private startConversation(message: any) : void {
+   this.customerChatService.startConversation(message).subscribe({
+        next: (response) => {
+          this.conversationId = response.id; // Store the conversation ID for future messages
+          this.messages.update((msgs) => [
+            ...msgs,
+            { text: this.msg, isBot: false, timestamp: new Date() },
+          ]);
+          this.form.reset();
+          console.log('Conversation started successfully:', response);
+        },
+        error: (err) => console.error('Error starting conversation:', err),
+      });
+  }
+
+  private sendMessage(payload: any) : void {
+    this.updateMessages(this.msg, false);
+   this.customerChatService.sendMessage(payload, this.conversationId).subscribe({
+        next: (message) => {
+          this.updateMessages(message.content, true); // Add customer's message to the UI
+          this.form.reset();
+          console.log('Message sent successfully:', message);
+        },
+        error: (err) => console.error('Error sending message:', err),
+      });
+  }
+
+  private updateMessages(message: any, isBot: boolean) : void {
     this.messages.update((msgs) => [
       ...msgs,
-      {
-        text: this.msg,
-        isBot: false,
-        timestamp: new Date(),
-      },
+      { text: message.content, isBot: isBot, timestamp: new Date() },
     ]);
-
-    const userMessage = this.msg.toLowerCase();
-    this.msg = '';
-    this.form.reset();
-
-    // Simulate Sofia replying in 1–2 seconds
-    setTimeout(() => {
-      let reply = "I'm searching our private collection for you...";
-
-      if (userMessage.includes('evening') || userMessage.includes('gown')) {
-        reply =
-          'Perfect for evening — let me show you our Dior Couture and Elie Saab pieces. Any preferred color?';
-      } else if (userMessage.includes('new') || userMessage.includes('arrival')) {
-        reply =
-          'New in: Patek Philippe Rainbow, Hermès Birkin 25 Rose Sakura, and a rare Graff emerald suite. Which interests you?';
-      } else if (userMessage.includes('under') || userMessage.includes('budget')) {
-        reply =
-          'Under $10k we have stunning Van Cleef pieces and Chanel J12 diamonds. Shall I send options?';
-      } else if (userMessage.includes('surprise')) {
-        reply =
-          'Surprise coming — a one-of-one Cartier high jewelry necklace just arrived. Want to see it first?';
-      }
-
-      this.messages.update((msgs) => [
-        ...msgs,
-        {
-          text: reply,
-          isBot: true,
-          timestamp: new Date(),
-        },
-      ]);
-    }, 1200 + Math.random() * 800);
   }
 
   private scrollToBottom() {
@@ -133,7 +141,5 @@ export class LiveStylistChatComponent implements AfterViewInit, OnInit {
     const el = this.messagesContainer.nativeElement;
     
     el.scrollTop = el.scrollHeight;
-
-
   }
 }
