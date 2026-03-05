@@ -7,7 +7,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class OrderingService {
-  private baseUrl = 'https://localhost:7195/orders';
+  private baseUrl = 'http://localhost:7000/ordering-service/orders';
   private httpClient = inject(HttpClient);
   private orderDetails = new BehaviorSubject<OrderDetailsModel | null>(null);
   currentOrderDetails$ = this.orderDetails.asObservable();
