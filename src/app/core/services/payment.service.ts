@@ -6,7 +6,7 @@ import { PaymentIntentModel } from "../../models/payment-intent.model";
 @Injectable({ providedIn: 'root' })
 export class PaymentService {
     private httpClient = inject(HttpClient);
-    private baseUrl = 'http://localhost:5144/api';
+    private baseUrl = 'http://localhost:7000/payment-service/api';
 
   createPaymentIntent(paymentIntent: PaymentIntentModel): Observable<any>{
     return this.httpClient.post<any>(`${this.baseUrl}/create-payment-intent`, paymentIntent);
