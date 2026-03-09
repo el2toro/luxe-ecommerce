@@ -35,11 +35,11 @@
 }
 </div>
 
-      <div class="quick-replies">
+      <!-- <div class="quick-replies">
         <button (click)="send('I need evening wear')">Evening Wear</button>
         <button (click)="send('Show me new arrivals')">New In</button>
         <button (click)="send('Something under $5,000')">Under $5K</button>
-      </div>
+      </div> -->
 
       <form [formGroup]="form" class="input-area" (ngSubmit)="send()">
         <input formControlName="message" type="text" placeholder="Message Sofia..." required />

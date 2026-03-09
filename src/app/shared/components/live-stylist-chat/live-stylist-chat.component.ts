@@ -110,7 +110,7 @@ export class LiveStylistChatComponent implements AfterViewInit, OnInit {
             { text: this.msg, isBot: false, timestamp: new Date() },
           ]);
           this.form.reset();
-          console.log('Conversation started successfully:', response);
+          console.log('Conversation started successfully messages:', this.messages());
         },
         error: (err) => console.error('Error starting conversation:', err),
       });
@@ -122,16 +122,17 @@ export class LiveStylistChatComponent implements AfterViewInit, OnInit {
         next: (message) => {
           this.updateMessages(message.content, true); // Add customer's message to the UI
           this.form.reset();
-          console.log('Message sent successfully:', message);
+          console.log('Message sent successfully:', this.messages());
+          this.scrollToBottom();
         },
         error: (err) => console.error('Error sending message:', err),
       });
   }
 
-  private updateMessages(message: any, isBot: boolean) : void {
+  private updateMessages(message: string, isBot: boolean) : void {
     this.messages.update((msgs) => [
       ...msgs,
-      { text: message.content, isBot: isBot, timestamp: new Date() },
+      { text: message, isBot: isBot, timestamp: new Date() },
     ]);
   }
 

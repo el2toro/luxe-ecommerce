@@ -22,7 +22,6 @@ import { CustomersPage } from './admin/customers/customers.page/customers.page';
 import { MarketingComponent } from './admin/marketing/marketing.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { VipLoungeComponent } from './admin/vip-lounge/vip-lounge.component';
-import { ArTryonComponent } from './features/ar-tryon/ar-tryon.component';
 import { ShopComponent } from './features/shop/shop.component';
 import { CheckoutFailedComponent } from './features/checkout/checkout-failed/checkout-failed.component';
 import { ResetPasswordPage } from '@features/auth/reset.page/reset.page';
@@ -36,7 +35,6 @@ export const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'products/:id', component: Detail },
   { path: 'categories', component: CategoriesPage },
-  { path: 'ar-tryon', component: ArTryonComponent },
   { path: 'category/:slug', component: Listing },
   { path: 'product/:id', component: Detail },
   { path: 'checkout', component: Checkout },
