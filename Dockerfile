@@ -1,3 +1,3 @@
 FROM nginx:alpine
-COPY dist/luxe-ecommerce /usr/share/nginx/html
+COPY dist/luxe-ecommerce/browser /usr/share/nginx/html
 EXPOSE 80
