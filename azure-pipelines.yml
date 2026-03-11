@@ -31,6 +31,16 @@ stages:
         ng build --configuration=production
       displayName: 'Build Angular App'
 
+    - script: |
+       docker build -t luxe-ecommerce .
+      displayName: Build Docker Image
+
+    - script: |
+       docker stop luxe-ecommerce || true
+       docker rm luxe-ecommerce || true
+       docker run -d -p 8080:80 --name luxe-ecommerce luxe-ecommerce
+      displayName: Run Docker Container
+
     # - task: Docker@2
     #   displayName: 'Build and Push Docker Image to Docker Hub'
     #   inputs:
