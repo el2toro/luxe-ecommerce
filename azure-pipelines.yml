@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  name: 'Ubuntu-Self-Hosted'
+  name: 'Ubuntu-Self-Hosted-Agent'
 
 variables:
   imageName: 'el2toro/luxe-ecommerce'  # Docker Hub repo name
@@ -17,7 +17,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      name: 'Ubuntu-Self-Hosted'
+      name: 'Ubuntu-Self-Hosted-Agent'
     steps:
     - task: NodeTool@0
       inputs:
@@ -31,17 +31,17 @@ stages:
         ng build --configuration=production
       displayName: 'Build Angular App'
 
-    - task: Docker@2
-      displayName: 'Build and Push Docker Image to Docker Hub'
-      inputs:
-        containerRegistry: 'dockerHubServiceConnection'
-        repository: '$(imageName)'
-        command: 'BuildAndPush'
-        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        buildContext: '$(Build.SourcesDirectory)'
-        tags: |
-          $(Build.BuildId)
-          latest
+    # - task: Docker@2
+    #   displayName: 'Build and Push Docker Image to Docker Hub'
+    #   inputs:
+    #     containerRegistry: 'dockerHubServiceConnection'
+    #     repository: '$(imageName)'
+    #     command: 'BuildAndPush'
+    #     Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+    #     buildContext: '$(Build.SourcesDirectory)'
+    #     tags: |
+    #       $(Build.BuildId)
+    #       latest
 
 # -----------------------------
 # 🚀 DEPLOYMENT STAGES (Optional)
