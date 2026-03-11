@@ -1,0 +1,100 @@
+trigger:
+- master
+
+pool:
+  name: 'Ubuntu-Self-Hosted'
+
+variables:
+  imageName: 'el2toro/luxe-ecommerce'  # Docker Hub repo name
+
+stages:
+
+# --------------------
+# 🛠 BUILD STAGE
+# --------------------
+- stage: Build
+  displayName: Build and Push Docker Image
+  jobs:
+  - job: Build
+    pool:
+      name: 'Ubuntu-Self-Hosted'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '20.x'
+      displayName: 'Install Node.js 20.x'
+
+    - script: |
+        cd luxe-ecommerce/
+        npm install -g @angular/cli
+        npm install
+        ng build --configuration=production
+      displayName: 'Build Angular App'
+
+    - task: Docker@2
+      displayName: 'Build and Push Docker Image to Docker Hub'
+      inputs:
+        containerRegistry: 'dockerHubServiceConnection'
+        repository: '$(imageName)'
+        command: 'BuildAndPush'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        buildContext: '$(Build.SourcesDirectory)'
+        tags: |
+          $(Build.BuildId)
+          latest
+
+# -----------------------------
+# 🚀 DEPLOYMENT STAGES (Optional)
+# -----------------------------
+# - stage: Development
+#   displayName: 'Deploy to Development'
+#   dependsOn: Build
+#   condition: succeeded()
+#   jobs:
+#   - deployment: DeployDev
+#     pool:
+#       name: 'Self-Hosted'
+#     environment: Development
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - script: echo "Pull and deploy el2toro/pmplatform-fe:$(Build.BuildId) to Dev"
+#             displayName: 'Deploy Docker Image to Dev'
+
+# - stage: Acceptance
+#   dependsOn: [ Development ]
+#   displayName: 'Deploy to Acceptance'
+#   jobs:
+#   - job: DeployAcceptance
+#     displayName: 'DeployAcceptance'
+#     steps:
+#     - script: echo "Deploying Docker Image to Acceptance"
+
+# - stage: Production
+ # dependsOn: [ Acceptance ]
+  # displayName: 'Deploy to Production'
+  # jobs:
+  # - deployment: DeployProduction
+  #   pool:
+  #     name: 'Ubuntu-Self-Hosted'
+  #   environment: Production
+  #   strategy:
+  #     runOnce:
+  #       deploy:
+  #         steps:         
+  #           - task: AzurePowerShell@5
+  #             displayName: 'Deploy Angular Docker Image to Azure Web App'
+  #             inputs:
+  #              azureSubscription: 'resourceManagerServiceConnection'
+  #              ScriptType: 'InlineScript'
+  #              Inline: |
+  #                 # Set variables
+  #                 $appName = "pm-platform-fe"
+  #                 $resourceGroup = "pm-platform-rg"
+  #                 $imageName = "$(imageName):latest"
+
+  #                 # Deploy Docker image to Web App
+  #                 Set-AzWebApp -Name $appName -ResourceGroupName $resourceGroup -ContainerImageName $imageName
+  #              azurePowerShellVersion: 'LatestVersion'
+                
